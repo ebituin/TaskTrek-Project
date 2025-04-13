@@ -20,6 +20,7 @@ class forgot_Reset extends StatefulWidget {
 
 class _forgot_ResetPageState extends State<forgot_Reset> {
   bool _obscureText = true;
+  bool _newObscureText = true;
   bool emptyText = false;
   bool confirmEmptyText = false;
   bool passwordNotMatch = false;
@@ -36,6 +37,11 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
   void passwordVisibilitySate(){
     setState(() {
       _obscureText = !_obscureText;
+    });
+  }
+  void newPasswordVisibilitySate(){
+    setState(() {
+      _newObscureText = !_newObscureText;
     });
   }
 
@@ -62,24 +68,10 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
               SizedBox(height: 60),
               Column(
                 children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 50),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 38,),
-                        Text(
-                          'New Password',
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 5),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
                     children: [
                       SizedBox(
                         height: 15,
@@ -88,10 +80,24 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                           opacity: 0.8,
                           child: Image.asset(
                           'lib/assets/images/padlock.png',
-                        ),
+                          ),
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(height: 10,)
+                    ],
+                    
+                  ),
+                  SizedBox(width: 5,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          'Confirm New Password',
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      SizedBox(height: 5,),
                       SizedBox(
                         height: 38.0,
                         width: 258,
@@ -103,8 +109,8 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                             fillColor: Colors.white,
                             hintText: 'PenPineappleApplePen',
                             suffixIcon: IconButton(
-                            icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-                            onPressed: passwordVisibilitySate,
+                              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+                              onPressed: passwordVisibilitySate,
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(6)
@@ -117,8 +123,13 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                           obscureText: _obscureText,
                         ),
                       ),
+                      SizedBox(height: 10),
+            
+                      
                     ],
-                    ),
+                  )
+                ],
+              ),
                   SizedBox(
                     height: 30,
                     child: Center(
@@ -177,8 +188,8 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                             fillColor: Colors.white,
                             hintText: 'PenPineappleApplePen',
                             suffixIcon: IconButton(
-                              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-                              onPressed: passwordVisibilitySate,
+                              icon: Icon(_newObscureText ? Icons.visibility_off : Icons.visibility),
+                              onPressed: newPasswordVisibilitySate,
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(6)
@@ -188,7 +199,7 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                               horizontal: 12.0,
                             ),
                           ),
-                          obscureText: _obscureText,
+                          obscureText: _newObscureText,
                         ),
                       ),
                     ],
