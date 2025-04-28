@@ -1,142 +1,160 @@
-/* 
+/*
   Authored by: Aleisha M. Arindaeng
   Company: Stark Industries
   Project: Task Trek
   Feature: [SI-002] Forgot Password
-  Description: This page is where the user will input their username in order to get otp.
- */
-
+  Description: This page is where the user will input their username in order to get OTP.
+*/
 
 import 'package:flutter/material.dart';
+import 'package:tasktrek/pages/resetPassword.dart';
 import 'package:tasktrek/pages/verifyOTP.dart';
 
-class forgot_page extends StatefulWidget {
-  const forgot_page({super.key});
-
-
+class ForgotPage extends StatefulWidget {
+  const ForgotPage({super.key});
 
   @override
-  State<forgot_page> createState() => _forgot_pagePageState();
+  State<ForgotPage> createState() => _ForgotPageState();
 }
 
-class _forgot_pagePageState extends State<forgot_page> {
+class _ForgotPageState extends State<ForgotPage> {
+  final TextEditingController _usernameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF6C96B5),
+      backgroundColor: const Color(0xFF6C96B5),
       appBar: AppBar(
-        backgroundColor: Color(0xFF6C96B5),
+        backgroundColor: const Color(0xFF6C96B5),
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 200),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                      height: 15,
-                      width: 15,
-                      child: Opacity(
-                        opacity: 0.8,
-                        child: Image.asset(
-                        'lib/assets/images/user.png',
-                      ),
-                      ),
-                    ),
-                      SizedBox(height: 10,)
-                    ],
-                    
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 500),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Title
+                Text(
+                  'Forgot Password',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
                   ),
-                  SizedBox(width: 5,),
-                  Column(
+                ),
+                const SizedBox(height: 40),
+
+                // Input Card
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF648CA9),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.white54),
+                  ),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'USERNAME',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 5,),
-                      SizedBox(
-                        height: 44,
-                        width: 272,
-                        child: TextFormField(
-                          style: TextStyle(fontSize: 14.0),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: 'Natataenako@email.com',
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0,
-                              horizontal: 12.0,
-                            ),
+                      // Icon and label
+                      Row(
+                        children: [
+                          Image.asset(
+                            'lib/assets/images/user.png',
+                            height: 20,
+                            width: 20,
+                            color: Colors.white,
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-            
-                      SizedBox(
-                        width: 260,
-                        child: Text(
-                          'This account will receive an OTP code on their phone number.',
-                          style: TextStyle(
-                            fontSize: 11,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(height: 30),
-              SizedBox(
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 5),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 40,
-                        width: 130,
-                        child: ElevatedButton(
-                          onPressed: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => forgot_page_2(),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            iconColor: Color(0xFF262629),
-                            minimumSize: Size(double.infinity, 20),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                            backgroundColor:Colors.black,
-                          ),
-                          child: Text(
-                            'Send OTP',
+                          const SizedBox(width: 8),
+                          const Text(
+                            'Username',
                             style: TextStyle(
                               color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
-                          )
-                        )
-                      )
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+
+                      // Username TextField
+                      TextFormField(
+                        controller: _usernameController,
+                        style: const TextStyle(fontSize: 14),
+                        decoration: InputDecoration(
+                          hintText: 'Natataenako@email.com',
+                          hintStyle: const TextStyle(color: Colors.black38),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 16),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      // Description
+                      const Text(
+                        'An OTP code will be sent to the phone number linked to this account.',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              )
-            ]
-          )
-        )
-      )
+
+                const SizedBox(height: 30),
+
+                // Send OTP Button
+                SizedBox(
+                  width: 160,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => forgot_Reset()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: const Text(
+                      'Send OTP',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
