@@ -47,18 +47,21 @@ class _DashboardState extends State<Dashboard> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Welcome, Eric!',
-                  style: TextStyle(
-                    color: const Color(0xFF050A35),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Text(
+                    'Welcome, Eric!',
+                    style: TextStyle(
+                      color: const Color(0xFF050A35),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 25),
+                  padding: const EdgeInsets.only(left: 25, bottom: 25),
                   child: Container(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 0, bottom: 5),
                     width: screenWidth * 1,
                     decoration: BoxDecoration(
                       color: const Color(0xFFA3D2CB),
@@ -70,19 +73,37 @@ class _DashboardState extends State<Dashboard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          'Recent Announcement',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          'Recent Announcement',
-                          style: TextStyle(fontSize: 12),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 13),
+                          child: Container(
+                            margin: EdgeInsets.all(12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Recent Announcement',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Here’s your recent announcements from your task.',
+                                  style: TextStyle(fontSize: 12),
+                                  softWrap: true,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: screenHeight * 0.175,
                           width: screenWidth * 1,
                           child: ListView.builder(
-                            controller: PageController(viewportFraction: 0.75,initialPage: 0),
+                            controller: PageController(
+                              viewportFraction: 0.75,
+                              initialPage: 0,
+                            ),
                             scrollDirection: Axis.horizontal,
                             itemCount: 10,
                             itemBuilder: (context, index) {
@@ -121,12 +142,13 @@ class _DashboardState extends State<Dashboard> {
                                             width: screenWidth * 0.17,
                                             decoration: BoxDecoration(
                                               color: const Color(0xFF3E8F72),
-                                              borderRadius: BorderRadius.circular(
-                                                10,
-                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(3.0),
+                                              padding: const EdgeInsets.all(
+                                                3.0,
+                                              ),
                                               child: Text(
                                                 'Important',
                                                 style: TextStyle(
@@ -141,7 +163,9 @@ class _DashboardState extends State<Dashboard> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              Icon(Icons.person_outline_rounded),
+                                              Icon(
+                                                Icons.person_outline_rounded,
+                                              ),
                                               Text(
                                                 'Eric',
                                                 style: TextStyle(
@@ -208,10 +232,8 @@ class _DashboardState extends State<Dashboard> {
               child: SizedBox(
                 width: screenWidth * 0.7,
                 child: ListView.builder(
-                  
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
-                    
                     return Container(
                       margin: const EdgeInsets.symmetric(vertical: 15),
                       child: Column(
