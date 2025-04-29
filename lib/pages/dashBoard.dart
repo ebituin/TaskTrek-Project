@@ -12,76 +12,214 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     List<Map<String, String>> tasks = [
       {'title': 'Task 1', 'description': 'Finish flutter proj'},
-      {'title': 'Task 1', 'description': 'Finish flutter proj'},
-      {'title': 'Task 1', 'description': 'Finish flutter proj'},
-      {'title': 'Task 1', 'description': 'Finish flutter proj'},
-      {'title': 'Task 1', 'description': 'Finish flutter proj'},
-      {'title': 'Task 1', 'description': 'Finish flutter proj'},
+      {'title': 'Task 2', 'description': 'Update UI design'},
+      {'title': 'Task 3', 'description': 'Fix login bug'},
+      {'title': 'Task 4', 'description': 'Push to GitHub'},
+      {'title': 'Task 5', 'description': 'Write documentation'},
+      {'title': 'Task 6', 'description': 'Test on emulator'},
     ];
 
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color(0xFF018F81),
+      backgroundColor: const Color(0xFF018F81),
       appBar: AppBar(
-        backgroundColor: Color(0xFF018F81),
-        title: Text('TASKTREK', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: const Color(0xFF018F81),
+        title: const Text(
+          'TASKTREK',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       drawer: Drawer(
         child: ListView(
-          children: [
+          children: const [
             DrawerHeader(child: Text('User')),
             ListTile(leading: Icon(Icons.dashboard), title: Text('Dashboard')),
           ],
         ),
       ),
       body: Column(
-        // <-- Start Column directly
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            color: Colors.amber,
-            height: screenHeight * 0.35,
-            width: double.infinity,
+            height: screenHeight * 0.4,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  color: Colors.amberAccent,
-                  height: screenHeight * 0.1,
-                  child: Text('Welcome, Name'),
+                Text(
+                  'Welcome, Eric!',
+                  style: TextStyle(
+                    color: const Color(0xFF050A35),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 10),
+                    width: screenWidth * 1,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFA3D2CB),
+                      borderRadius: BorderRadius.horizontal(
+                        left: Radius.circular(20),
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Recent Announcement',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          'Recent Announcement',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.175,
+                          width: screenWidth * 1,
+                          child: ListView.builder(
+                            controller: PageController(viewportFraction: 0.75,initialPage: 0),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 10,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: const Color(0xFF018F81),
+                                  ),
+                                  color: Colors.white,
+                                  image: const DecorationImage(
+                                    image: AssetImage(
+                                      'lib/assets/images/Frame 117.png',
+                                    ),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: screenWidth * 0.17,
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xFF3E8F72),
+                                              borderRadius: BorderRadius.circular(
+                                                10,
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(3.0),
+                                              child: Text(
+                                                'Important',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 8,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.person_outline_rounded),
+                                              Text(
+                                                'Eric',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Text(
+                                            'MA JOGGING KITA SAAGA.',
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            'March 21, 2015',
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                          RotatedBox(
+                                            quarterTurns: 2,
+                                            child: Icon(Icons.arrow_back),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
           Container(
             height: screenHeight * 0.05,
-            color: Colors.amber[200],
             width: screenWidth * 0.8,
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'Task Trek Sphere',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Color(0xFF050A35),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Expanded(
-            // <-- Expanded for the ListView part
             child: Center(
-              child: Container(
+              child: SizedBox(
                 width: screenWidth * 0.7,
                 child: ListView.builder(
+                  
                   itemCount: tasks.length,
-                  scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
+                    
                     return Container(
-                      margin: EdgeInsets.symmetric(vertical: 15),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
                       child: Column(
                         children: [
                           Container(
                             height: screenHeight * 0.135,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF3336AB),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF3336AB),
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20),
                               ),
@@ -97,16 +235,16 @@ class _DashboardState extends State<Dashboard> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(
-                                        'JOGGIN ROUTINE',
-                                        style: TextStyle(
+                                        tasks[index]['title'] ?? '',
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15,
                                         ),
                                       ),
                                       Text(
-                                        '02343',
-                                        style: TextStyle(
+                                        tasks[index]['description'] ?? '',
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 12,
                                         ),
@@ -115,7 +253,8 @@ class _DashboardState extends State<Dashboard> {
                                   ),
                                 ),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Padding(
@@ -126,7 +265,9 @@ class _DashboardState extends State<Dashboard> {
                                         size: screenWidth * 0.07,
                                       ),
                                     ),
-                                    Image.asset('lib/assets/images/Brgy. Sphere Card Illustration.png')
+                                    Image.asset(
+                                      'lib/assets/images/Brgy. Sphere Card Illustration.png',
+                                    ),
                                   ],
                                 ),
                               ],
@@ -134,8 +275,8 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           Container(
                             height: screenHeight * 0.08,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFCCCCEA),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFCCCCEA),
                               borderRadius: BorderRadius.vertical(
                                 bottom: Radius.circular(20),
                               ),
@@ -153,11 +294,18 @@ class _DashboardState extends State<Dashboard> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Row(
-                                        children: [
-                                          Icon(Icons.campaign_outlined),
+                                        children: const [
+                                          Icon(
+                                            Icons.campaign_outlined,
+                                            color: Color(0xFF050A35),
+                                          ),
+                                          SizedBox(width: 5),
                                           Text(
                                             'New announcement',
-                                            style: TextStyle(fontSize: 12),
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Color(0xFF050A35),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -165,10 +313,11 @@ class _DashboardState extends State<Dashboard> {
                                         children: [
                                           Icon(
                                             Icons.person_outline_rounded,
+                                            color: const Color(0xFF050A35),
                                             size: screenWidth * 0.05,
                                           ),
                                           SizedBox(width: screenWidth * 0.01),
-                                          Text(
+                                          const Text(
                                             '99 people',
                                             style: TextStyle(fontSize: 12),
                                           ),
@@ -185,41 +334,38 @@ class _DashboardState extends State<Dashboard> {
                                     child: PopupMenuButton<int>(
                                       onSelected: (value) {
                                         if (value == 1) {
-                                          // Handle action
+                                          // Action 1
                                         } else if (value == 2) {
-                                          // Handle action
+                                          // Action 2
                                         } else if (value == 3) {
-                                          // Handle action
+                                          // Action 3
                                         }
                                       },
                                       itemBuilder:
                                           (context) => [
-                                            PopupMenuItem(
+                                            const PopupMenuItem(
                                               value: 1,
                                               child: Text('Data 1'),
                                             ),
-                                            PopupMenuItem(
+                                            const PopupMenuItem(
                                               value: 2,
                                               child: Text('Data 2'),
                                             ),
-                                            PopupMenuItem(
+                                            const PopupMenuItem(
                                               value: 3,
                                               child: Text('Data 3'),
                                             ),
                                           ],
-                                      offset: Offset(
-                                        0,
-                                        50,
-                                      ), // Makes it pop lower
+                                      offset: const Offset(0, 50),
                                       child: Container(
                                         height: screenWidth * 0.1,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFF3336AB),
+                                          color: const Color(0xFF3336AB),
                                           borderRadius: BorderRadius.circular(
                                             20,
                                           ),
                                         ),
-                                        child: Center(
+                                        child: const Center(
                                           child: Text(
                                             'View',
                                             style: TextStyle(
