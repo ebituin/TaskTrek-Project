@@ -40,7 +40,7 @@ class _HomescreenState extends State<Homescreen> {
     });
   }
 
-
+  
 
   void clearErrors() {
     setState(() {
@@ -62,6 +62,7 @@ class _HomescreenState extends State<Homescreen> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+
       backgroundColor: Color(0xFF018F81),
       body: Center(
         child: Column(

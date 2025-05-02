@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -6,6 +8,21 @@ class Signup extends StatefulWidget {
   @override
   State<Signup> createState() => _SignUpPageState();
 }
+
+
+void insertUser(String name, String email) async {
+  final supabase = Supabase.instance.client;
+
+  final response = await supabase.from('users').insert({
+    'name': name,
+    'email': email,
+  });
+
+  print(response);
+}
+
+
+
 
 class _SignUpPageState extends State<Signup> {
   @override
@@ -40,6 +57,7 @@ class _SignUpPageState extends State<Signup> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
+
                         },
                         style: ElevatedButton.styleFrom(
                           iconColor: Colors.black,
@@ -57,6 +75,7 @@ class _SignUpPageState extends State<Signup> {
                       SizedBox(height: 15),
                       ElevatedButton(
                         onPressed: () {
+                          insertUser('eric', 'user@user.com');
                         },
                         style: ElevatedButton.styleFrom(
                           iconColor: Colors.black,

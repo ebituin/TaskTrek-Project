@@ -40,6 +40,10 @@ android {
     }
 }
 
+dependencies {
+    implementation("com.facebook.stetho:stetho:1.6.0")
+}
+
 flutter {
     source = "../.."
 }
