@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tasktrek/pages/dashBoard.dart';
 import 'package:tasktrek/pages/forgotPassword.dart';
 import 'package:tasktrek/pages/homePageV2.dart';
-import 'package:tasktrek/pages/signUp.dart';
+import 'package:tasktrek/pages/signUpAccountType.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:tasktrek/pages/signUpForm.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Homescreen(),
         '/SignUp': (context) => Signup(),
+        '/SignUpForm': (context) => SignupForm(),
         '/Forgot': (context) => ForgotPage(),
         '/DashBoard': (context) => Dashboard(),
       },

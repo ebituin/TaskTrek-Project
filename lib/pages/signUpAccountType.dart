@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:tasktrek/widgets/signUpDB.dart';
+import 'package:tasktrek/widgets/styles.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -10,16 +11,7 @@ class Signup extends StatefulWidget {
 }
 
 
-void insertUser(String name, String email) async {
-  final supabase = Supabase.instance.client;
 
-  final response = await supabase.from('users').insert({
-    'name': name,
-    'email': email,
-  });
-
-  print(response);
-}
 
 
 
@@ -47,7 +39,7 @@ class _SignUpPageState extends State<Signup> {
                 ),
                 Text(
                   'Which user are you?',
-                  style: TextStyle( color: const Color.fromARGB(255, 5, 10, 53)),
+                  style: TextStyle( color: AppColors.accentColor),
                 ),
                 SizedBox(height: 20,),
                 Container(
@@ -57,13 +49,13 @@ class _SignUpPageState extends State<Signup> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-
+                          Navigator.pushNamed(context, '/SignUpForm');
                         },
                         style: ElevatedButton.styleFrom(
                           iconColor: Colors.black,
                           minimumSize: Size(double.infinity, 50),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          backgroundColor: const Color.fromARGB(255, 5, 10, 53),
+                          backgroundColor:  AppColors.accentColor,
                         ),
                         child: Text(
                           'Student',
@@ -75,7 +67,7 @@ class _SignUpPageState extends State<Signup> {
                       SizedBox(height: 15),
                       ElevatedButton(
                         onPressed: () {
-                          insertUser('eric', 'user@user.com');
+                          Navigator.pushNamed(context, 'routeName');
                         },
                         style: ElevatedButton.styleFrom(
                           iconColor: Colors.black,

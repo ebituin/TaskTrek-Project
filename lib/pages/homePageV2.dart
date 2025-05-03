@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/signUp.dart';
+import 'package:tasktrek/pages/signUpAccountType.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
