@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tasktrek/widgets/signUpDB.dart';
-import 'package:tasktrek/widgets/styles.dart';
+import 'package:tasktrek/services/signUpDB.dart';
+import 'package:tasktrek/styles/styles.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});

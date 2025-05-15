@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/widgets/styles.dart';
+import 'package:tasktrek/styles/styles.dart';
 
 class SpherePage extends StatefulWidget {
   const SpherePage({super.key});
@@ -26,14 +26,7 @@ class _SpherePageState extends State<SpherePage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(30.0),
-                child: Text(
-                  'Welcome, Eric!',
-                  style: TextStyle(
-                    color: const Color(0xFF050A35),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text('Welcome, Eric!', style: AppTextStyles.title),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 25, bottom: 25),
@@ -357,7 +350,7 @@ class _SpherePageState extends State<SpherePage> {
                                                   'Copy Code',
                                                   style: TextStyle(
                                                     color: Color(0xFF3336AB),
-                                                    fontSize: 12
+                                                    fontSize: 12,
                                                   ),
                                                 ),
                                               ),
@@ -367,7 +360,7 @@ class _SpherePageState extends State<SpherePage> {
                                                   'Leave Barangay Space',
                                                   style: TextStyle(
                                                     color: Color(0xFF3336AB),
-                                                    fontSize: 12
+                                                    fontSize: 12,
                                                   ),
                                                 ),
                                               ),
@@ -412,7 +405,7 @@ class _SpherePageState extends State<SpherePage> {
                   ),
                 ),
                 Positioned(
-                  bottom: 20,
+                  bottom: 0,
                   child: IconButton.filled(
                     onPressed: () {},
                     icon: Icon(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/signUpForm.dart';
-import 'package:tasktrek/widgets/styles.dart';
+import 'package:tasktrek/pages/sign_up/signUpForm.dart';
+import 'package:tasktrek/styles/styles.dart';
 
 class InformationForm extends StatelessWidget {
   @override

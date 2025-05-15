@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/widgets/styles.dart';
+import 'package:tasktrek/styles/styles.dart';
 
 class CredentialsForm extends StatelessWidget {
   @override

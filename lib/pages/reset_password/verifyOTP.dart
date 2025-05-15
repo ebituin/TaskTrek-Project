@@ -7,7 +7,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/resetPassword.dart';
+import 'package:tasktrek/pages/reset_password/resetPassword.dart';
 
 class forgot_page_2 extends StatefulWidget {
   const forgot_page_2({super.key});

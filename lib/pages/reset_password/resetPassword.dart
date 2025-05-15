@@ -7,7 +7,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/homePageV2.dart';
+import 'package:tasktrek/pages/home/home_sceen.dart';
 
 class forgot_Reset extends StatefulWidget {
   const forgot_Reset({super.key});

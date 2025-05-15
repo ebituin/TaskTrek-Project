@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/dashBoard.dart';
-import 'package:tasktrek/pages/forgotPassword.dart';
-import 'package:tasktrek/pages/homePageV2.dart';
-import 'package:tasktrek/pages/signUpAccountType.dart';
+import 'package:tasktrek/pages/dashboard/dashBoard.dart';
+import 'package:tasktrek/pages/reset_password/forgotPassword.dart';
+import 'package:tasktrek/pages/home/home_sceen.dart';
+import 'package:tasktrek/pages/sign_up/signUpAccountType.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tasktrek/pages/signUpForm.dart';
+import 'package:tasktrek/pages/sign_up/signUpForm.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,8 +13,6 @@ void main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50bmJxZHRsZGdzYm9peW53ZnhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYxMjM4MDgsImV4cCI6MjA2MTY5OTgwOH0.Xn6lvUfkPKsHWSy1EVHM8NSb1-zyvS7uOvoTQFgaJ2o',
   );
-
-
 
   runApp(const MyApp());
 }
@@ -35,6 +33,8 @@ class MyApp extends StatelessWidget {
         '/DashBoard': (context) => Dashboard(),
       },
       debugShowCheckedModeBanner: false,
+
+      
     );
   }
 }
