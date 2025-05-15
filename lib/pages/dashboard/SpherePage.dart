@@ -16,23 +16,27 @@ class _SpherePageState extends State<SpherePage> {
     ];
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
+        SizedBox(
           height: screenHeight * 0.4,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: EdgeInsets.all(screenWidth * 0.07),
                 child: Text('Welcome, Eric!', style: AppTextStyles.title),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 25, bottom: 25),
+                padding: EdgeInsets.only(
+                  left: screenWidth * 0.06,
+                  bottom: screenHeight * 0.03,
+                ),
                 child: Container(
-                  padding: EdgeInsets.only(left: 0, bottom: 5),
-                  width: screenWidth * 1,
+                  padding: EdgeInsets.only(bottom: screenHeight * 0.01),
+                  width: screenWidth,
                   decoration: BoxDecoration(
                     color: const Color(0xFFA3D2CB),
                     borderRadius: BorderRadius.horizontal(
@@ -41,48 +45,43 @@ class _SpherePageState extends State<SpherePage> {
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 13),
+                        padding: EdgeInsets.only(left: screenWidth * 0.03),
                         child: Container(
-                          margin: EdgeInsets.all(12),
+                          margin: EdgeInsets.all(screenWidth * 0.03),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Recent Announcement',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: screenWidth * 0.045,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
                                 'Here’s your recent announcements from your task.',
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(fontSize: screenWidth * 0.03),
                                 softWrap: true,
                               ),
                             ],
                           ),
                         ),
                       ),
-
                       SizedBox(
                         height: screenHeight * 0.175,
-                        width: screenWidth * 1,
+                        width: screenWidth,
                         child: ListView.builder(
-                          controller: PageController(
-                            viewportFraction: 0.75,
-                            initialPage: 0,
-                          ),
                           scrollDirection: Axis.horizontal,
                           itemCount: 10,
                           itemBuilder: (context, index) {
                             return Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 10,
+                              margin: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.025,
+                                vertical: screenHeight * 0.01,
                               ),
+                              width: screenWidth * 0.75,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
@@ -97,14 +96,12 @@ class _SpherePageState extends State<SpherePage> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: EdgeInsets.all(screenWidth * 0.025),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -118,26 +115,29 @@ class _SpherePageState extends State<SpherePage> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(3.0),
+                                            padding: EdgeInsets.all(
+                                              screenWidth * 0.01,
+                                            ),
                                             child: Text(
                                               'Important',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 8,
+                                                fontSize: screenWidth * 0.025,
                                                 color: Colors.white,
                                               ),
                                             ),
                                           ),
                                         ),
                                         Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
                                           children: [
-                                            Icon(Icons.person_outline_rounded),
+                                            Icon(
+                                              Icons.person_outline_rounded,
+                                              size: screenWidth * 0.04,
+                                            ),
                                             Text(
                                               'Eric',
                                               style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: screenWidth * 0.035,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -145,26 +145,28 @@ class _SpherePageState extends State<SpherePage> {
                                         ),
                                         Text(
                                           'MA JOGGING KITA SAAGA.',
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
+                                          style: TextStyle(
+                                            fontSize: screenWidth * 0.03,
                                           ),
                                         ),
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
                                         Text(
                                           'March 21, 2015',
-                                          style: TextStyle(fontSize: 10),
+                                          style: TextStyle(
+                                            fontSize: screenWidth * 0.025,
+                                          ),
                                         ),
                                         RotatedBox(
                                           quarterTurns: 2,
-                                          child: Icon(Icons.arrow_back),
+                                          child: Icon(
+                                            Icons.arrow_back,
+                                            size: screenWidth * 0.05,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -206,7 +208,9 @@ class _SpherePageState extends State<SpherePage> {
                     itemCount: tasks.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: const EdgeInsets.symmetric(vertical: 15),
+                        margin: EdgeInsets.symmetric(
+                          vertical: screenHeight * 0.02,
+                        ),
                         child: Column(
                           children: [
                             Container(
@@ -222,7 +226,9 @@ class _SpherePageState extends State<SpherePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(
+                                      screenWidth * 0.025,
+                                    ),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -230,17 +236,17 @@ class _SpherePageState extends State<SpherePage> {
                                       children: [
                                         Text(
                                           tasks[index]['title'] ?? '',
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 15,
+                                            fontSize: screenWidth * 0.04,
                                           ),
                                         ),
                                         Text(
                                           tasks[index]['description'] ?? '',
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 12,
+                                            fontSize: screenWidth * 0.03,
                                           ),
                                         ),
                                       ],
@@ -252,7 +258,9 @@ class _SpherePageState extends State<SpherePage> {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(
+                                          screenWidth * 0.025,
+                                        ),
                                         child: Icon(
                                           Icons.more_horiz_rounded,
                                           color: Colors.white,
@@ -261,6 +269,7 @@ class _SpherePageState extends State<SpherePage> {
                                       ),
                                       Image.asset(
                                         'lib/assets/images/Brgy. Sphere Card Illustration.png',
+                                        width: screenWidth * 0.2,
                                       ),
                                     ],
                                   ),
@@ -278,27 +287,29 @@ class _SpherePageState extends State<SpherePage> {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(
+                                      screenWidth * 0.025,
+                                    ),
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Row(
-                                          children: const [
+                                          children: [
                                             Icon(
                                               Icons.campaign_outlined,
                                               color: Color(0xFF050A35),
+                                              size: screenWidth * 0.045,
                                             ),
-                                            SizedBox(width: 5),
+                                            SizedBox(width: screenWidth * 0.02),
                                             Text(
                                               'New announcement',
                                               style: TextStyle(
-                                                fontSize: 12,
+                                                fontSize: screenWidth * 0.03,
                                                 color: Color(0xFF050A35),
                                               ),
                                             ),
@@ -308,13 +319,15 @@ class _SpherePageState extends State<SpherePage> {
                                           children: [
                                             Icon(
                                               Icons.person_outline_rounded,
-                                              color: const Color(0xFF050A35),
-                                              size: screenWidth * 0.05,
+                                              color: Color(0xFF050A35),
+                                              size: screenWidth * 0.045,
                                             ),
-                                            SizedBox(width: screenWidth * 0.01),
-                                            const Text(
+                                            SizedBox(width: screenWidth * 0.02),
+                                            Text(
                                               '99 people',
-                                              style: TextStyle(fontSize: 12),
+                                              style: TextStyle(
+                                                fontSize: screenWidth * 0.03,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -322,7 +335,9 @@ class _SpherePageState extends State<SpherePage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(
+                                      screenWidth * 0.025,
+                                    ),
                                     child: Container(
                                       alignment: Alignment.center,
                                       width: screenWidth * 0.24,
@@ -334,43 +349,40 @@ class _SpherePageState extends State<SpherePage> {
                                           ),
                                         ),
                                         onSelected: (value) {
-                                          if (value == 1) {
-                                            // Action 1
-                                          } else if (value == 2) {
-                                            // Action 2
-                                          } else if (value == 3) {
-                                            // Action 3
-                                          }
+                                          // Action handling
                                         },
                                         itemBuilder:
                                             (context) => [
-                                              PopupMenuItem<int>(
+                                              PopupMenuItem(
                                                 value: 1,
                                                 child: Text(
                                                   'Copy Code',
                                                   style: TextStyle(
                                                     color: Color(0xFF3336AB),
-                                                    fontSize: 12,
+                                                    fontSize:
+                                                        screenWidth * 0.03,
                                                   ),
                                                 ),
                                               ),
-                                              PopupMenuItem<int>(
+                                              PopupMenuItem(
                                                 value: 2,
                                                 child: Text(
                                                   'Leave Barangay Space',
                                                   style: TextStyle(
                                                     color: Color(0xFF3336AB),
-                                                    fontSize: 12,
+                                                    fontSize:
+                                                        screenWidth * 0.03,
                                                   ),
                                                 ),
                                               ),
-                                              PopupMenuItem<int>(
+                                              PopupMenuItem(
                                                 value: 3,
                                                 child: Text(
                                                   'View People',
                                                   style: TextStyle(
-                                                    fontSize: 12,
                                                     color: Color(0xFF3336AB),
+                                                    fontSize:
+                                                        screenWidth * 0.03,
                                                   ),
                                                 ),
                                               ),
@@ -385,7 +397,7 @@ class _SpherePageState extends State<SpherePage> {
                                               20,
                                             ),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             'View',
                                             style: TextStyle(
                                               color: Colors.white,
@@ -410,10 +422,8 @@ class _SpherePageState extends State<SpherePage> {
                     onPressed: () {},
                     icon: Icon(
                       Icons.add_rounded,
-
                       size: screenWidth * 0.15,
-                      color: const Color(0xFF018F81),
-                      weight: 1000,
+                      color: Color(0xFF018F81),
                     ),
                     style: IconButton.styleFrom(
                       backgroundColor: Color(0xFF050A35),

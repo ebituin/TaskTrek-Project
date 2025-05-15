@@ -90,134 +90,103 @@ void addUser() async {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedPage = 0;
+@override
+Widget build(BuildContext context) {
+  final screenWidth = MediaQuery.of(context).size.width;
+  final screenHeight = MediaQuery.of(context).size.height;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  return Scaffold(
+    backgroundColor: AppColors.primaryColor,
+    appBar: AppBar(
       backgroundColor: AppColors.primaryColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
-        title: const Text(
-          'TASKTREK',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+      title: const Text(
+        'TASKTREK',
+        style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            DrawerHeader(child: Text('User')),
-            ListTile(leading: Icon(Icons.dashboard), title: Text('Dashboard')),
-          ],
-        ),
+    ),
+    drawer: Drawer(
+      child: ListView(
+        children: const [
+          DrawerHeader(child: Text('User')),
+          ListTile(leading: Icon(Icons.dashboard), title: Text('Dashboard')),
+        ],
       ),
+    ),
 
-      body: Center(
-        child: Column(
-          children: [
-            Expanded(child: _getSelectedPage(_selectedPage)),
-            SizedBox(height: 20),
-            Container(
-              width: 280,
-              height: 44,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              margin: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedPage = 0;
-                      });
-                    },
-                    child: Container(
-                      width: 90,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Opacity(
-                        opacity: _selectedPage == 0 ? 1 : 0.5,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.home, color: AppColors.accentColor),
-                            Text('Home', style: AppTextStyles.body_subtitle),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedPage = 1;
-                      });
-                    },
-                    child: Container(
-                      width: 90,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Opacity(
-                        opacity: _selectedPage == 1 ? 1 : 0.5,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.people_outline,
-                              color: AppColors.accentColor,
-                            ),
-                            Text(
-                              'In-Progress',
-                              style: AppTextStyles.body_subtitle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedPage = 2;
-                      });
-                    },
-                    child: Container(
-                      width: 90,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Opacity(
-                        opacity: _selectedPage == 2 ? 1 : 0.5,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.settings_outlined,
-                              color: AppColors.accentColor,
-                            ),
-                            Text(
-                              'Settings',
-                              style: AppTextStyles.body_subtitle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+    body: Center(
+      child: Column(
+        children: [
+          Expanded(child: _getSelectedPage(_selectedPage)),
+          SizedBox(height: screenHeight * 0.02),
+          Container(
+            width: screenWidth * 0.75, // was 280
+            height: screenHeight * 0.06, // was 44
+            margin: EdgeInsets.all(screenWidth * 0.05), // was 20
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
             ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _bottomTabItem(
+                  index: 0,
+                  icon: Icons.home,
+                  label: 'Home',
+                  screenWidth: screenWidth,
+                ),
+                _bottomTabItem(
+                  index: 1,
+                  icon: Icons.people_outline,
+                  label: 'In-Progress',
+                  screenWidth: screenWidth,
+                ),
+                _bottomTabItem(
+                  index: 2,
+                  icon: Icons.settings_outlined,
+                  label: 'Settings',
+                  screenWidth: screenWidth,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _bottomTabItem({
+  required int index,
+  required IconData icon,
+  required String label,
+  required double screenWidth,
+}) {
+  return GestureDetector(
+    onTap: () {
+      setState(() {
+        _selectedPage = index;
+      });
+    },
+    child: Container(
+      width: screenWidth * 0.22, // was 90
+      height: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Opacity(
+        opacity: _selectedPage == index ? 1 : 0.5,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: AppColors.accentColor),
+            Text(label, style: AppTextStyles.body_subtitle),
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   Widget _getSelectedPage(int index) {
     switch (index) {

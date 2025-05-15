@@ -12,7 +12,7 @@ class _ProgressState extends State<Progress> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(40.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +27,10 @@ class _ProgressState extends State<Progress> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(
-                      bottom: 20, left: 40, right: 40),
+                    bottom: 20,
+                    left: 30,
+                    right: 30,
+                  ),
                   child: Container(
                     height: 95,
                     width: 250,
@@ -44,16 +47,31 @@ class _ProgressState extends State<Progress> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Task title', style: AppTextStyles.body_title),
-                            Text('Task time', style: AppTextStyles.time),
+                            Opacity(
+                              opacity: 0.5,
+                              child: Text(
+                                'Task time',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.accentColor,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text('View', style: AppTextStyles.body_button),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.accentColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 72,
+                          height: 39,
+                          decoration: BoxDecoration(
+                            color: AppColors.accentColor,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Text(
+                              'View',
+                              style: AppTextStyles.body_button,
                             ),
                           ),
                         ),
