@@ -3,7 +3,6 @@ import 'package:tasktrek/pages/sign_up/credentialsForm.dart';
 import 'package:tasktrek/pages/sign_up/informationForm.dart';
 import 'package:tasktrek/styles/styles.dart';
 
-
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
 
@@ -38,7 +37,7 @@ class _SignupFormState extends State<SignupForm> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: const Color(0xFF018F81),
+          backgroundColor: AppColors.primaryColor,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: AppColors.accentColor),
             onPressed: () {

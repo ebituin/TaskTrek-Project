@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasktrek/pages/sign_up/signUpAccountType.dart';
+import 'package:tasktrek/styles/styles.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -26,21 +27,20 @@ class _HomescreenState extends State<Homescreen> {
     setState(() {
       if (_emailController.text.isEmpty && _passwordController.text.isEmpty) {
         incorrect = true;
-        connection = false;//internet
-      } else if (_emailController.text == 'user@user.com' && _passwordController.text == '123') {
+        connection = false; //internet
+      } else if (_emailController.text == 'user@user.com' &&
+          _passwordController.text == '123') {
         incorrect = false;
-        connection = true;//internet
+        connection = true; //internet
         if (connection) {
           Navigator.pushNamed(context, '/DashBoard');
         }
       } else {
         incorrect = true;
-        connection = false;//internet
+        connection = false; //internet
       }
     });
   }
-
-  
 
   void clearErrors() {
     setState(() {
@@ -49,8 +49,7 @@ class _HomescreenState extends State<Homescreen> {
     });
   }
 
-
-  void hideText(){
+  void hideText() {
     setState(() {
       obscureTextState = !obscureTextState;
     });
@@ -62,213 +61,201 @@ class _HomescreenState extends State<Homescreen> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-
-      backgroundColor: Color(0xFF018F81),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(//logo
-              alignment: Alignment.center,
-              height: screenHeight * 0.25,
-              child: Text(
-                'Welcome !',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.19,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Title Hero',
-                  shadows: [
-                    Shadow(
-                      color: Colors.black54,
-                      offset: Offset(2, 2),
-                      blurRadius: 10
-                    )
-                  ]
-                ),
-              )
+      backgroundColor: AppColors.primaryColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: screenHeight * 0.05),
+            child: Text(
+              'Welcome !',
+              style: TextStyle(
+                color: AppColors.textWelcome,
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Inter',
+              ),
             ),
-            Container(//form
-              alignment: Alignment.center,
-              height: screenHeight * 0.40,
-              child: Container(
-                padding: EdgeInsets.all(screenWidth * 0.04),
-                height: screenHeight * 0.4,
-                width: screenWidth * 0.73,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6)
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: 342,
+            width: 333,
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: AppColors.loginBackground,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.white),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Email',
-                                  style: TextStyle(
-                                    fontSize: screenWidth * 0.035
-                                  ),
-                                ),
-                                SizedBox(height: screenHeight * 0.005),
-                                TextField(
-                                  controller: _emailController,
-                                  cursorColor: Colors.black,
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(vertical:  screenWidth * 0.01 ,horizontal: screenWidth * 0.02),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.grey,
-                                        width: 0.8
-                                      ),
-                                      borderRadius: BorderRadius.circular(6)
-                                      ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 0.8
-                                      ),
-                                      borderRadius: BorderRadius.circular(6)
-                          
-                                    ),
-                                    isDense: true,
-                                    hintText: 'email',
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: screenWidth * 0.035
-                                      
-                                    )
-                                  ),
-                                  
-                                )
-                              ],
-                            ) 
+                    Text(
+                      'Email',
+                      style: TextStyle(fontSize: screenWidth * 0.035),
+                    ),
+                    SizedBox(height: screenHeight * 0.005),
+                    SizedBox(
+                      width: 285,
+                      height: 40,
+                      child: TextField(
+                        controller: _emailController,
+                        cursorColor: Colors.black,
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.035,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 14,
+                            horizontal: 12,
                           ),
-                          SizedBox(height: screenHeight * 0.025),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Password',
-                                  style: TextStyle(
-                                    fontSize: screenWidth * 0.035
-                                  ),
-                                ),
-                                SizedBox(height: screenHeight * 0.005),
-                                TextField(
-                                  obscureText: obscureTextState,
-                                  controller: _passwordController,
-                                  cursorColor: Colors.black,
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(vertical:  screenWidth * 0.01 ,horizontal: screenWidth * 0.02),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: const Color.fromARGB(131, 158, 158, 158),
-                                        width: 0.8
-                                      ),
-                                      borderRadius: BorderRadius.circular(6)
-                          
-                                      ),
-                                      
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 0.8
-                                      ),
-                                      borderRadius: BorderRadius.circular(6)
-                          
-                                    ),
-                                    isDense: true,
-                                    hintText: 'Enter your password',
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: screenWidth * 0.035
-                                    ),
-                                    
-                                    suffixIcon: GestureDetector(
-                                      onTap:hideText,
-                                      child: Icon(obscureTextState ? Icons.visibility_off_outlined : Icons.visibility_outlined ),
-                                    )
-                                    
-                                  ),
-                                  
-                                )
-                              ],
-                            ) 
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 0.8,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        ],
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 0.8,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          hintText: 'johndoe@gmail.com',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: screenWidth * 0.035,
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: screenHeight * 0.045,
-                      alignment: Alignment.centerLeft,
-                      child: ElevatedButton(
-                        onPressed: validationState,
-                        style: ElevatedButton.styleFrom(
-                          iconColor: Colors.black,
-                          minimumSize: Size(double.infinity, 50),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                          backgroundColor: const Color.fromARGB(255, 53, 53, 53),
-                        ),
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(
-                            color: Colors.white
-                          ),
-                          )
-                        )
-                    ),
-                    Container(
-                      height: screenHeight * 0.06,
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/Forgot');
-                        },
-                        child: Text(
-                          'Forgot password?',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationThickness: 2
-                            
-                          ),
-                        ),
-                      )
-                      
                     ),
                   ],
                 ),
-              )
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Password',
+                      style: TextStyle(fontSize: screenWidth * 0.035),
+                    ),
+                    SizedBox(height: screenHeight * 0.005),
+                    SizedBox(
+                      width: 285,
+                      height: 40,
+                      child: TextField(
+                        obscureText: obscureTextState,
+                        controller: _passwordController,
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: screenWidth * 0.01,
+                            horizontal: screenWidth * 0.02,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: const Color.fromARGB(131, 158, 158, 158),
+                              width: 0.8,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 0.8,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          isDense: true,
+                          hintText: 'Enter your password',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: screenWidth * 0.035,
+                          ),
+
+                          suffixIcon: GestureDetector(
+                            onTap: hideText,
+                            child: Icon(
+                              obscureTextState
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 285,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: validationState,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.blackButton,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/Forgot');
+                    },
+                    child: Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                        decorationThickness: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Container(//signup
-              alignment: Alignment.center,
-              height: screenHeight * 0.25,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if(!connection) 
+          ),
+          Container(
+            //signup
+            alignment: Alignment.center,
+            height: screenHeight * 0.25,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (!connection)
                   Container(
                     width: screenWidth * 0.73,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: const Color(0xFF050A35)
+                      color: AppColors.errorColor,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(
-                          Icons.wifi_off,
-                          color: const Color.fromARGB(255, 200, 51, 40),
-                          size: screenHeight * 0.07,
+                        Image.asset(
+                          'lib/assets/images/Group 187.png',
+                          width: 40,
+                          height: 40,
                         ),
+
                         Container(
                           width: screenWidth * 0.5,
                           height: screenHeight * 0.08,
@@ -281,20 +268,18 @@ class _HomescreenState extends State<Homescreen> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: screenHeight * 0.018,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
                                 'Please check your internet connection.',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: screenHeight * 0.015
+                                  fontSize: screenHeight * 0.015,
                                 ),
                               ),
-                              
                             ],
-
-                          )
+                          ),
                         ),
                         Container(
                           height: screenWidth * 0.08,
@@ -305,19 +290,18 @@ class _HomescreenState extends State<Homescreen> {
                               Icons.close,
                               color: Colors.white,
                               size: screenHeight * 0.02,
-                            )
-                          )
-                        )
+                            ),
+                          ),
+                        ),
                       ],
-                      
                     ),
                   )
-                  else if (incorrect)
+                else if (incorrect)
                   Container(
                     width: screenWidth * 0.73,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: const Color(0xFF050A35)
+                      color: const Color(0xFF050A35),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -339,21 +323,18 @@ class _HomescreenState extends State<Homescreen> {
                                 style: TextStyle(
                                   color: const Color(0xFFF64040),
                                   fontSize: screenHeight * 0.018,
-                                  fontWeight: FontWeight.bold
-
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
                                 'Username or Password is incorrect.',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: screenHeight * 0.015
+                                  fontSize: screenHeight * 0.015,
                                 ),
                               ),
-                              
                             ],
-
-                          )
+                          ),
                         ),
                         Container(
                           height: screenWidth * 0.08,
@@ -364,47 +345,39 @@ class _HomescreenState extends State<Homescreen> {
                               Icons.close,
                               color: Colors.white,
                               size: screenHeight * 0.02,
-                            )
-                          )
-                        )
-                      ],
-                      
-                    ),
-                  ),
-                  Container(
-                    height: screenHeight * 0.07,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don\'t have an account?',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.035,
-                          ),
-                        ),
-                        SizedBox(width: screenWidth * 0.01),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/SignUp');
-                          },
-                          child: Text(
-                          'Create a new account.',
-                            style: TextStyle(
-                              fontSize: screenWidth * 0.035,
-                              color: const Color(0xFF3336AB),
-                              fontWeight: FontWeight.bold,
-                              
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ) 
-                ],
-              ) 
-            )
-          ],
-        )
+                  ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Don\'t have an account?',
+                style: TextStyle(fontSize: screenWidth * 0.035),
+              ),
+              SizedBox(width: screenWidth * 0.01),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/SignUpForm');
+                },
+                child: Text(
+                  'Create a new account.',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.035,
+                    color: Color(0xFF3336AB),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

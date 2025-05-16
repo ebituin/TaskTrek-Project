@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:tasktrek/pages/dashboard/progress.dart';
+import 'package:tasktrek/pages/dashboard/settings.dart';
 import 'package:tasktrek/styles/styles.dart';
-import 'SpherePage.dart';
+import 'home.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -189,11 +190,13 @@ Widget _bottomTabItem({
 
 
   Widget _getSelectedPage(int index) {
-    switch (index) {
+    switch (2) {
       case 0:
         return SpherePage();
       case 1:
         return Progress();
+      case 2:
+        return Settings();
       default:
         return SpherePage();
     }

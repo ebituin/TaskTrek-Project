@@ -21,7 +21,7 @@ class _SpherePageState extends State<SpherePage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          height: screenHeight * 0.4,
+          height: screenHeight * 0.41,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

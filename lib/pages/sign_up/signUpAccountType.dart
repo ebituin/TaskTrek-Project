@@ -20,7 +20,7 @@ class _SignUpPageState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold( // Provides the basic structure for the signup screen.
-      backgroundColor:  const Color(0xFF018F81),
+      backgroundColor:  AppColors.primaryColor,
       body: 
       Center(
         child: 
