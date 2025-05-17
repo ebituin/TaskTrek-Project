@@ -78,11 +78,11 @@ class InformationForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                buildTextFieldRow('First Name', 'NIWANG'),
-                buildTextFieldRow('Last Name', 'ARIZALA'),
-                buildTextFieldRow('Contact Number', '09704412399'),
-                buildTextFieldRow('Address', 'Naga City, Camarines Sur'),
-                buildTextFieldRow('Birth Day', '1999-01-23'),
+                buildTextFieldRow('First Name', 'NIWANG', _firstNameController),
+                buildTextFieldRow('Last Name', 'ARIZALA', _lastNameController),
+                buildTextFieldRow('Contact Number', '09704412399', _contactNumberController),
+                buildTextFieldRow('Address', 'Naga City, Camarines Sur', _addressController),
+                buildTextFieldRow('Birth Day', '1999-01-23', _birthDateController),
                 GestureDetector(
                   onTap: () {},
                   child: Text(

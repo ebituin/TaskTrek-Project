@@ -93,9 +93,9 @@ class CredentialsForm extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                buildTextFieldRow('Email', 'example@gmail.com'),
-                buildTextFieldRow('Password', 'enter password'),
-                buildTextFieldRow('Confirm Password', 'enter password'),
+                buildTextFieldRow('Email', 'example@gmail.com', _emailController),
+                buildTextFieldRow('Password', 'enter password', _passwordController),
+                buildTextFieldRow('Confirm Password', 'enter password', _confirmPasswordController),
               ],
             ),
           ),
