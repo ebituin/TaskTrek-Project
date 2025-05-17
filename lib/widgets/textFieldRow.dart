@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tasktrek/styles/styles.dart';
 
-Widget buildTextFieldRow(String label, String hint) {
+Widget buildTextFieldRow(String label, String hint, TextEditingController _controller) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: Column(
@@ -32,6 +32,7 @@ Widget buildTextFieldRow(String label, String hint) {
               height: 38,
               width: 258,
               child: TextFormField(
+                controller: _controller,
                 textAlign: TextAlign.start,
                 cursorColor: AppColors.accentColor,
                 decoration: InputDecoration(
