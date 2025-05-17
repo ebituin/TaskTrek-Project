@@ -125,47 +125,43 @@ class _SignupFormState extends State<SignupForm> {
                 children: [
                   Container(
                     width: screenWidth * 0.65,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            height: screenHeight * 0.04,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (isInformationForm) {
-                                  setState(() {
-                                    isInformationForm =
-                                        false; // Move to Credentials form
-                                  });
-                                } else {
-                                  Navigator.pushNamed(context, '/DashBoard');
-                                  // Perform signup logic or navigate elsewhere
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primaryColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  side: BorderSide(
-                                    color: AppColors.accentColor,
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                              child: Text(
-                                isInformationForm ? 'Next' : 'Submit',
-                                style: TextStyle(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (isInformationForm) {
+                                setState(() {
+                                  isInformationForm =
+                                      false; // Move to Credentials form
+                                });
+                              } else {
+                                Navigator.pushNamed(context, '/DashBoard');
+                                // Perform signup logic or navigate elsewhere
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
                                   color: AppColors.accentColor,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                  width: 1,
                                 ),
                               ),
                             ),
+                            child: Text(
+                              isInformationForm ? 'Next' : 'Submit',
+                              style: TextStyle(
+                                color: AppColors.accentColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 30),

@@ -38,7 +38,7 @@ class _SpherePageState extends State<SpherePage> {
                   padding: EdgeInsets.only(bottom: screenHeight * 0.01),
                   width: screenWidth,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFA3D2CB),
+                    color: AppColors.itemContainer,
                     borderRadius: BorderRadius.horizontal(
                       left: Radius.circular(20),
                     ),
@@ -58,11 +58,15 @@ class _SpherePageState extends State<SpherePage> {
                                 style: TextStyle(
                                   fontSize: screenWidth * 0.045,
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
                               Text(
                                 'Here’s your recent announcements from your task.',
-                                style: TextStyle(fontSize: screenWidth * 0.03),
+                                style: TextStyle(
+                                  fontSize: screenWidth * 0.03,
+                                  color: Colors.white,
+                                ),
                                 softWrap: true,
                               ),
                             ],
@@ -90,7 +94,7 @@ class _SpherePageState extends State<SpherePage> {
                                 color: Colors.white,
                                 image: const DecorationImage(
                                   image: AssetImage(
-                                    'lib/assets/images/Frame 117.png',
+                                    'lib/assets/images/Frame_117.png',
                                   ),
                                   fit: BoxFit.fill,
                                 ),
@@ -133,12 +137,14 @@ class _SpherePageState extends State<SpherePage> {
                                             Icon(
                                               Icons.person_outline_rounded,
                                               size: screenWidth * 0.04,
+                                              color: AppColors.accentColor,
                                             ),
                                             Text(
                                               'Eric',
                                               style: TextStyle(
                                                 fontSize: screenWidth * 0.035,
                                                 fontWeight: FontWeight.bold,
+                                                color: AppColors.accentColor,
                                               ),
                                             ),
                                           ],
@@ -147,6 +153,7 @@ class _SpherePageState extends State<SpherePage> {
                                           'MA JOGGING KITA SAAGA.',
                                           style: TextStyle(
                                             fontSize: screenWidth * 0.03,
+                                            color: AppColors.accentColor,
                                           ),
                                         ),
                                       ],
@@ -159,6 +166,7 @@ class _SpherePageState extends State<SpherePage> {
                                           'March 21, 2015',
                                           style: TextStyle(
                                             fontSize: screenWidth * 0.025,
+                                            color: AppColors.accentColor,
                                           ),
                                         ),
                                         RotatedBox(
@@ -166,6 +174,7 @@ class _SpherePageState extends State<SpherePage> {
                                           child: Icon(
                                             Icons.arrow_back,
                                             size: screenWidth * 0.05,
+                                            color: AppColors.accentColor,
                                           ),
                                         ),
                                       ],
@@ -216,7 +225,7 @@ class _SpherePageState extends State<SpherePage> {
                             Container(
                               height: screenHeight * 0.135,
                               decoration: const BoxDecoration(
-                                color: Color(0xFF3336AB),
+                                color: AppColors.itemContainer,
                                 borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(20),
                                 ),
@@ -268,7 +277,7 @@ class _SpherePageState extends State<SpherePage> {
                                         ),
                                       ),
                                       Image.asset(
-                                        'lib/assets/images/Brgy. Sphere Card Illustration.png',
+                                        'lib/assets/images/BrgySphere.png',
                                         width: screenWidth * 0.2,
                                       ),
                                     ],
@@ -302,7 +311,7 @@ class _SpherePageState extends State<SpherePage> {
                                           children: [
                                             Icon(
                                               Icons.campaign_outlined,
-                                              color: Color(0xFF050A35),
+                                              color: AppColors.accentColor,
                                               size: screenWidth * 0.045,
                                             ),
                                             SizedBox(width: screenWidth * 0.02),
@@ -310,7 +319,7 @@ class _SpherePageState extends State<SpherePage> {
                                               'New announcement',
                                               style: TextStyle(
                                                 fontSize: screenWidth * 0.03,
-                                                color: Color(0xFF050A35),
+                                                color: AppColors.accentColor,
                                               ),
                                             ),
                                           ],
@@ -319,7 +328,7 @@ class _SpherePageState extends State<SpherePage> {
                                           children: [
                                             Icon(
                                               Icons.person_outline_rounded,
-                                              color: Color(0xFF050A35),
+                                              color: AppColors.accentColor,
                                               size: screenWidth * 0.045,
                                             ),
                                             SizedBox(width: screenWidth * 0.02),
@@ -358,7 +367,8 @@ class _SpherePageState extends State<SpherePage> {
                                                 child: Text(
                                                   'Copy Code',
                                                   style: TextStyle(
-                                                    color: Color(0xFF3336AB),
+                                                    color:
+                                                        AppColors.accentColor,
                                                     fontSize:
                                                         screenWidth * 0.03,
                                                   ),
@@ -369,7 +379,8 @@ class _SpherePageState extends State<SpherePage> {
                                                 child: Text(
                                                   'Leave Barangay Space',
                                                   style: TextStyle(
-                                                    color: Color(0xFF3336AB),
+                                                    color:
+                                                        AppColors.accentColor,
                                                     fontSize:
                                                         screenWidth * 0.03,
                                                   ),
@@ -380,7 +391,8 @@ class _SpherePageState extends State<SpherePage> {
                                                 child: Text(
                                                   'View People',
                                                   style: TextStyle(
-                                                    color: Color(0xFF3336AB),
+                                                    color:
+                                                        AppColors.accentColor,
                                                     fontSize:
                                                         screenWidth * 0.03,
                                                   ),
@@ -392,7 +404,7 @@ class _SpherePageState extends State<SpherePage> {
                                           height: screenHeight * 0.045,
                                           width: screenWidth * 0.23,
                                           decoration: BoxDecoration(
-                                            color: Color(0xFF3336AB),
+                                            color: AppColors.itemContainer,
                                             borderRadius: BorderRadius.circular(
                                               20,
                                             ),
@@ -423,7 +435,7 @@ class _SpherePageState extends State<SpherePage> {
                     icon: Icon(
                       Icons.add_rounded,
                       size: screenWidth * 0.15,
-                      color: Color(0xFF018F81),
+                      color: Colors.white,
                     ),
                     style: IconButton.styleFrom(
                       backgroundColor: Color(0xFF050A35),

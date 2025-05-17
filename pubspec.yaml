@@ -26,8 +26,9 @@ flutter:
   assets:
     - lib/assets/images/user.png
     - lib/assets/images/padlock.png
-    - lib/assets/images/Brgy. Sphere Card Illustration.png
-    - lib/assets/images/Frame 117.png
-    - lib/assets/images/Frame 149.png
+    - lib/assets/images/BrgySphere.png
+    - lib/assets/images/Frame_117.png
+    - lib/assets/images/Frame_149.png
     - lib/assets/images/Union.png
-    - lib/assets/images/Group 187.png
+    - lib/assets/images/Group_187.png
+    - lib/assets/images/Top_Bar.png

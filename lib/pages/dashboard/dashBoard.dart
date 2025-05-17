@@ -91,106 +91,177 @@ void addUser() async {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedPage = 0;
-@override
-Widget build(BuildContext context) {
-  final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
-  return Scaffold(
-    backgroundColor: AppColors.primaryColor,
-    appBar: AppBar(
+    return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      title: const Text(
-        'TASKTREK',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-    ),
-    drawer: Drawer(
-      child: ListView(
-        children: const [
-          DrawerHeader(child: Text('User')),
-          ListTile(leading: Icon(Icons.dashboard), title: Text('Dashboard')),
-        ],
-      ),
-    ),
-
-    body: Center(
-      child: Column(
-        children: [
-          Expanded(child: _getSelectedPage(_selectedPage)),
-          SizedBox(height: screenHeight * 0.02),
-          Container(
-            width: screenWidth * 0.75, // was 280
-            height: screenHeight * 0.06, // was 44
-            margin: EdgeInsets.all(screenWidth * 0.05), // was 20
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _bottomTabItem(
-                  index: 0,
-                  icon: Icons.home,
-                  label: 'Home',
-                  screenWidth: screenWidth,
-                ),
-                _bottomTabItem(
-                  index: 1,
-                  icon: Icons.people_outline,
-                  label: 'In-Progress',
-                  screenWidth: screenWidth,
-                ),
-                _bottomTabItem(
-                  index: 2,
-                  icon: Icons.settings_outlined,
-                  label: 'Settings',
-                  screenWidth: screenWidth,
-                ),
-              ],
-            ),
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryColor,
+        leading: Builder(
+          builder:
+              (context) => GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: Image.asset('lib/assets/images/Top_Bar.png'),
+              ),
+        ),
+        title: const Text(
+          'TASKTREK',
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontFamily: 'Outfit',
+            color: AppColors.accentColor,
           ),
-        ],
+        ),
       ),
-    ),
-  );
-}
-
-Widget _bottomTabItem({
-  required int index,
-  required IconData icon,
-  required String label,
-  required double screenWidth,
-}) {
-  return GestureDetector(
-    onTap: () {
-      setState(() {
-        _selectedPage = index;
-      });
-    },
-    child: Container(
-      width: screenWidth * 0.22, // was 90
-      height: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Opacity(
-        opacity: _selectedPage == index ? 1 : 0.5,
+      drawer: Container(
+        width: screenWidth * 0.7,
+        height: screenHeight * 1,
+        padding: EdgeInsets.symmetric(vertical: 40),
+        color: AppColors.primaryColor,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: AppColors.accentColor),
-            Text(label, style: AppTextStyles.body_subtitle),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, bottom: 60),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset('lib/assets/images/Top_Bar.png'),
+                  SizedBox(width: 10),
+                  Text('Tasktrek', style: AppTextStyles.title),
+                ],
+              ),
+            ),
+            Container(
+              height: screenHeight * 0.3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _menuButton(
+                    label: 'Task Creation',
+                    onTap: () {
+                      print('Task Creation');
+                      Navigator.pop(context);
+                    },
+                  ),
+                  _menuButton(
+                    label: 'Due Date',
+                    onTap: () {
+                      print('Due Date');
+                      Navigator.pop(context);
+                    },
+                  ),
+                  _menuButton(
+                    label: 'Calendar',
+                    onTap: () {
+                      print('Calendar');
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  print('Logout');
+                  Navigator.pushReplacementNamed(context, '/');
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 30),
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: AppColors.errorColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
-    ),
-  );
-}
 
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(child: _getSelectedPage(_selectedPage)),
+            SizedBox(height: screenHeight * 0.02),
+            Container(
+              width: screenWidth * 0.75, // was 280
+              height: screenHeight * 0.06, // was 44
+              margin: EdgeInsets.all(screenWidth * 0.05), // was 20
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _bottomTabItem(
+                    index: 0,
+                    icon: Icons.home,
+                    label: 'Home',
+                    screenWidth: screenWidth,
+                  ),
+                  _bottomTabItem(
+                    index: 1,
+                    icon: Icons.people_outline,
+                    label: 'In-Progress',
+                    screenWidth: screenWidth,
+                  ),
+                  _bottomTabItem(
+                    index: 2,
+                    icon: Icons.settings_outlined,
+                    label: 'Settings',
+                    screenWidth: screenWidth,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _bottomTabItem({
+    required int index,
+    required IconData icon,
+    required String label,
+    required double screenWidth,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedPage = index;
+        });
+      },
+      child: Container(
+        width: screenWidth * 0.22, // was 90
+        height: double.infinity,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+        child: Opacity(
+          opacity: _selectedPage == index ? 1 : 0.5,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: AppColors.accentColor),
+              Text(label, style: AppTextStyles.body_subtitle),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _getSelectedPage(int index) {
-    switch (2) {
+    switch (index) {
       case 0:
         return SpherePage();
       case 1:
@@ -201,4 +272,30 @@ Widget _bottomTabItem({
         return SpherePage();
     }
   }
+}
+
+Widget _menuButton({required String label, required VoidCallback onTap}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Row(
+      children: [
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.only(left: 20),
+            height: 40,
+            alignment: Alignment.centerLeft,
+            color: AppColors.secondaryColor,
+            child: Text(
+              label,
+              style: TextStyle(
+                color: AppColors.accentColor,
+                fontWeight: FontWeight.bold,
+                fontSize: AppTextStyles.body_button.fontSize,
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }

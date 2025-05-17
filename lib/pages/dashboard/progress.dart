@@ -19,7 +19,10 @@ class _ProgressState extends State<Progress> {
           SizedBox(height: 40),
           Text('Hi, Name!', style: AppTextStyles.title),
           SizedBox(height: 10),
-          Text('Here is your current task/s', style: AppTextStyles.subtitle),
+          Text(
+            'Here is your current task/s',
+            style: TextStyle(fontSize: 24, color: AppColors.accentColor),
+          ),
           SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
@@ -33,10 +36,10 @@ class _ProgressState extends State<Progress> {
                   ),
                   child: Container(
                     height: 95,
-                    width: 250,
+                    width: 306,
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: AppColors.backgroundColor,
+                      color: AppColors.secondaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
@@ -50,9 +53,9 @@ class _ProgressState extends State<Progress> {
                             Opacity(
                               opacity: 0.5,
                               child: Text(
-                                'Task time',
+                                'April 20, 2025',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10,
                                   color: AppColors.accentColor,
                                 ),
                               ),
@@ -64,12 +67,12 @@ class _ProgressState extends State<Progress> {
                           child: Container(
                             alignment: Alignment.center,
                             width: 72,
-                          height: 39,
-                          decoration: BoxDecoration(
-                            color: AppColors.accentColor,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Text(
+                            height: 39,
+                            decoration: BoxDecoration(
+                              color: AppColors.accentColor,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Text(
                               'View',
                               style: AppTextStyles.body_button,
                             ),

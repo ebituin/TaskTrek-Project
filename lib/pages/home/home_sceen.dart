@@ -251,7 +251,7 @@ class _HomescreenState extends State<Homescreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Image.asset(
-                          'lib/assets/images/Group 187.png',
+                          'lib/assets/images/Group_187.png',
                           width: 40,
                           height: 40,
                         ),

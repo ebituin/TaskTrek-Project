@@ -30,7 +30,7 @@ class _SettingsState extends State<Settings> {
               width: 304,
               height: 342,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.secondaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
@@ -41,13 +41,18 @@ class _SettingsState extends State<Settings> {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.person, size: screenWidth * 0.05),
+                          Icon(
+                            Icons.person,
+                            size: screenWidth * 0.05,
+                            color: AppColors.accentColor,
+                          ),
                           SizedBox(width: 5),
                           Text(
                             'Personal Information',
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
+                              color: AppColors.accentColor,
                             ),
                           ),
                         ],
@@ -58,14 +63,17 @@ class _SettingsState extends State<Settings> {
                             'Edit',
                             style: TextStyle(
                               fontSize: 13,
-                              color: Colors.green[700],
+                              color: Color(0xFF6CDAB3),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(width: 5),
                           SizedBox(
                             width: screenWidth * 0.05,
-                            child: Image.asset('lib/assets/images/Union.png'),
+                            child: Image.asset(
+                              'lib/assets/images/Union.png',
+                              color: Color(0xFF6CDAB3),
+                            ),
                           ),
                         ],
                       ),
@@ -145,13 +153,18 @@ class _SettingsState extends State<Settings> {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.phone, size: screenWidth * 0.05),
+                      Icon(
+                        Icons.phone,
+                        size: screenWidth * 0.05,
+                        color: AppColors.accentColor,
+                      ),
                       SizedBox(width: 5),
                       Text(
                         'Contact Information',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
+                          color: AppColors.textColor,
                         ),
                       ),
                     ],
@@ -208,13 +221,18 @@ class _SettingsState extends State<Settings> {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.location_on, size: screenWidth * 0.05),
+                      Icon(
+                        Icons.location_on,
+                        size: screenWidth * 0.05,
+                        color: AppColors.accentColor,
+                      ),
                       SizedBox(width: 5),
                       Text(
                         'Address',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
+                          color: AppColors.textColor,
                         ),
                       ),
                     ],
@@ -375,6 +393,7 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
+
 void changePassword(BuildContext context) {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -384,127 +403,125 @@ void changePassword(BuildContext context) {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
     ),
-    builder: (context) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: SizedBox(
-        height: 329,
-        width: 441,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'New Password',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: AppColors.accentColor,
-              ),
-            ),
-            SizedBox(height: 4),
-            Text(
-              'Set the new password for your account so you can login and access all the features.',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10,
-                color: AppColors.textColor,
-              ),
-            ),
-            SizedBox(height: 20),
-
-            // Password Field
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    builder:
+        (context) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: SizedBox(
+            height: 329,
+            width: 441,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, right: 8),
-                  child: Icon(
-                    Icons.lock_outline,
-                    size: 20,
+                Text(
+                  'New Password',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                     color: AppColors.accentColor,
                   ),
                 ),
-                Expanded(
-                  child: PasswordTextField(
-                    controller: passwordController,
-                    label: 'Password',
-                  ),
+                SizedBox(height: 4),
+                Text(
+                  'Set the new password for your account so you can login and access all the features.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 10, color: AppColors.textColor),
                 ),
-              ],
-            ),
+                SizedBox(height: 20),
 
-            SizedBox(height: 10),
-
-            // Confirm Password Field
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, right: 8),
-                  child: Icon(
-                    Icons.lock_outline,
-                    size: 20,
-                    color: AppColors.accentColor,
-                  ),
-                ),
-                Expanded(
-                  child: PasswordTextField(
-                    controller: confirmPasswordController,
-                    label: 'Confirm Password',
-                  ),
-                ),
-              ],
-            ),
-
-            Spacer(),
-
-            // Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 40,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
+                // Password Field
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, right: 8),
+                      child: Icon(
+                        Icons.lock_outline,
+                        size: 20,
+                        color: AppColors.accentColor,
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: 220,
-                  height: 42,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Change Password'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.accentColor,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
+                    Expanded(
+                      child: PasswordTextField(
+                        controller: passwordController,
+                        label: 'Password',
                       ),
                     ),
-                  ),
+                  ],
+                ),
+
+                SizedBox(height: 10),
+
+                // Confirm Password Field
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, right: 8),
+                      child: Icon(
+                        Icons.lock_outline,
+                        size: 20,
+                        color: AppColors.accentColor,
+                      ),
+                    ),
+                    Expanded(
+                      child: PasswordTextField(
+                        controller: confirmPasswordController,
+                        label: 'Confirm Password',
+                      ),
+                    ),
+                  ],
+                ),
+
+                Spacer(),
+
+                // Buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 220,
+                      height: 42,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Change Password'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.accentColor,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
-      ),
-    ),
   );
 }

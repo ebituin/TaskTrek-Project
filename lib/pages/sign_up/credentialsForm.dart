@@ -5,17 +5,17 @@ import 'package:tasktrek/widgets/textFieldRow.dart';
 class CredentialsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: const EdgeInsets.all(20),
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
             width: screenWidth * 0.7,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
@@ -26,12 +26,13 @@ class CredentialsForm extends StatelessWidget {
                     color: AppColors.accentColor,
                   ),
                 ),
+                SizedBox(height: 10),
                 Opacity(
                   opacity: 0.5,
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      children: <TextSpan>[
+                      children: [
                         TextSpan(
                           text: 'Register as a ',
                           style: TextStyle(
@@ -43,8 +44,8 @@ class CredentialsForm extends StatelessWidget {
                           text: 'Teacher',
                           style: TextStyle(
                             fontSize: 15,
-                            color: AppColors.accentColor,
                             fontWeight: FontWeight.bold,
+                            color: AppColors.accentColor,
                           ),
                         ),
                         TextSpan(
@@ -58,53 +59,74 @@ class CredentialsForm extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
               ],
             ),
           ),
-          SizedBox(height: screenHeight * 0.04),
+          Container(
+            width: screenWidth * 0.9,
+            padding: EdgeInsets.only(right: screenWidth * 0.3),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Login Credentials',
+                  style: TextStyle(
+                    color: AppColors.accentColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'This will be your account details when logging in to this app.',
+                  style: TextStyle(
+                    color: AppColors.accentColor.withOpacity(0.5),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                buildTextFieldRow('Email', 'example@gmail.com', screenHeight),
-                buildTextFieldRow('Password', 'enter password', screenHeight),
-                buildTextFieldRow(
-                  'Confirm Password',
-                  'enter password',
-                  screenHeight,
-                ),
+                buildTextFieldRow('Email', 'example@gmail.com'),
+                buildTextFieldRow('Password', 'enter password'),
+                buildTextFieldRow('Confirm Password', 'enter password'),
               ],
             ),
           ),
-          
-          SizedBox(height: screenHeight * 0.04),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Login Credentials',
-                style: TextStyle(
-                  color: AppColors.accentColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              SizedBox(
-                width: screenWidth * 0.6,
-                child: Opacity(
-                  opacity: 0.5,
-                  child: Text(
-                    'This will be your account details when logging in to this app.',
-                    softWrap: true,
-                    style: TextStyle(
-                      color: AppColors.accentColor,
-                      fontSize: 14,
+
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Already have an account?',
+                      style: TextStyle(
+                        color: AppColors.accentColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                    SizedBox(width: 10),
+                    Text(
+                      'Login',
+                      style: TextStyle(
+                        color: AppColors.itemContainer,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

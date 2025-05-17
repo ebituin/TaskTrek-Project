@@ -10,13 +10,12 @@ class InformationForm extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.all(20),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: screenWidth * 0.7,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
@@ -27,12 +26,13 @@ class InformationForm extends StatelessWidget {
                     color: AppColors.accentColor,
                   ),
                 ),
+                SizedBox(height: 10),
                 Opacity(
                   opacity: 0.5,
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      children: <TextSpan>[
+                      children: [
                         TextSpan(
                           text: 'Register as a ',
                           style: TextStyle(
@@ -44,8 +44,8 @@ class InformationForm extends StatelessWidget {
                           text: 'Teacher',
                           style: TextStyle(
                             fontSize: 15,
-                            color: AppColors.accentColor,
                             fontWeight: FontWeight.bold,
+                            color: AppColors.accentColor,
                           ),
                         ),
                         TextSpan(
@@ -78,19 +78,11 @@ class InformationForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                buildTextFieldRow('First Name', 'NIWANG', screenHeight),
-                buildTextFieldRow('Last Name', 'ARIZALA', screenHeight),
-                buildTextFieldRow(
-                  'Contact Number',
-                  '09704412399',
-                  screenHeight,
-                ),
-                buildTextFieldRow(
-                  'Address',
-                  'Naga City, Camarines Sur',
-                  screenHeight,
-                ),
-                buildTextFieldRow('Birth Day', '1999-01-23', screenHeight),
+                buildTextFieldRow('First Name', 'NIWANG'),
+                buildTextFieldRow('Last Name', 'ARIZALA'),
+                buildTextFieldRow('Contact Number', '09704412399'),
+                buildTextFieldRow('Address', 'Naga City, Camarines Sur'),
+                buildTextFieldRow('Birth Day', '1999-01-23'),
                 GestureDetector(
                   onTap: () {},
                   child: Text(

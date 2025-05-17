@@ -33,8 +33,6 @@ class MyApp extends StatelessWidget {
         '/DashBoard': (context) => Dashboard(),
       },
       debugShowCheckedModeBanner: false,
-
-      
     );
   }
 }

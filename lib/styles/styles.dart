@@ -6,9 +6,10 @@ class AppColors {
   static const Color accentColor = Color(0xFF050A35);
   static const Color backgroundColor = Color(0xFF278696);
   static const Color loginBackground = Color(0xFF638AA7);
+  static const Color itemContainer = Color(0xFF3336AB);
   static const Color blackButton = Color(0xFF2C2C2C);
   static const Color textWelcome = Color(0xFFFFFFFF);
-  static const Color textColor = Color(0xFF82849A);
+  static const Color textColor = Color(0xFF050A35);
   static const Color textColor2 = Color(0xFF6CDAB3);
   static const Color errorColor = Color(0xFFAD292B);
 }
