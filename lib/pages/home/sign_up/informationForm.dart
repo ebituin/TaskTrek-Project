@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/sign_up/signUpForm.dart';
+import 'package:tasktrek/pages/home/sign_up/signUpForm.dart';
 import 'package:tasktrek/styles/styles.dart';
 import 'package:tasktrek/widgets/textFieldRow.dart';
 

@@ -7,7 +7,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/home/home_sceen.dart';
+import 'package:tasktrek/pages/home/logIn.dart';
 
 class forgot_Reset extends StatefulWidget {
   const forgot_Reset({super.key});
@@ -246,7 +246,7 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                     !passwordNotMatch && !emptyText && !confirmEmptyText?
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Homescreen(),
+                      MaterialPageRoute(builder: (context) => logIn(),
                       ),
                     ):null;
                   },

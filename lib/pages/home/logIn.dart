@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/sign_up/signUpAccountType.dart';
 import 'package:tasktrek/styles/styles.dart';
 
-class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+class logIn extends StatefulWidget {
+  const logIn({super.key});
 
   @override
-  State<Homescreen> createState() => _HomescreenState();
+  State<logIn> createState() => _logInState();
 }
 
-class _HomescreenState extends State<Homescreen> {
+class _logInState extends State<logIn> {
   bool connection = true;
   bool incorrect = false;
   bool obscureTextState = true;

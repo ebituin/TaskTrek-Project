@@ -263,13 +263,13 @@ class _DashboardState extends State<Dashboard> {
   Widget _getSelectedPage(int index) {
     switch (index) {
       case 0:
-        return SpherePage();
+        return home();
       case 1:
         return Progress();
       case 2:
         return Settings();
       default:
-        return SpherePage();
+        return home();
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasktrek/pages/sign_up/credentialsForm.dart';
-import 'package:tasktrek/pages/sign_up/informationForm.dart';
+import 'package:tasktrek/pages/home/sign_up/credentialsForm.dart';
+import 'package:tasktrek/pages/home/sign_up/informationForm.dart';
 import 'package:tasktrek/styles/styles.dart';
 
 class SignupForm extends StatefulWidget {

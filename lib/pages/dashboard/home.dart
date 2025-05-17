@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tasktrek/styles/styles.dart';
 
-class SpherePage extends StatefulWidget {
-  const SpherePage({super.key});
+class home extends StatefulWidget {
+  const home({super.key});
 
   @override
-  State<SpherePage> createState() => _SpherePageState();
+  State<home> createState() => _homeState();
 }
 
-class _SpherePageState extends State<SpherePage> {
+class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, String>> tasks = [

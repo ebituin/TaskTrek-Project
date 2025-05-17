@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tasktrek/pages/dashboard/dashBoard.dart';
-import 'package:tasktrek/pages/reset_password/forgotPassword.dart';
-import 'package:tasktrek/pages/home/home_sceen.dart';
-import 'package:tasktrek/pages/sign_up/signUpAccountType.dart';
+import 'package:tasktrek/pages/dashboard/home.dart';
+import 'package:tasktrek/pages/dashboard/landingPage.dart';
+import 'package:tasktrek/pages/home/reset_password/forgotPassword.dart';
+import 'package:tasktrek/pages/home/logIn.dart';
+import 'package:tasktrek/pages/home/sign_up/signUpAccountType.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tasktrek/pages/sign_up/signUpForm.dart';
+import 'package:tasktrek/pages/home/sign_up/signUpForm.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => Homescreen(),
+        '/': (context) => LandingPage(),
+        '/home': (context) => home(),
+        '/logIn': (context) => logIn(),
         '/SignUp': (context) => Signup(),
         '/SignUpForm': (context) => SignupForm(),
         '/Forgot': (context) => ForgotPage(),
