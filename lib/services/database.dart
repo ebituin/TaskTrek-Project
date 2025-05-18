@@ -1,5 +1,22 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+Future<String> logInUser({
+  required String email,
+  required String password,
+}) async {
+  final supabase = Supabase.instance.client;
+  try {
+    final logInResponse = await supabase.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
+    return logInResponse.user!.id;
+  } catch (e) {
+    print('Error during log in: $e');
+    return '';
+  }
+}
+
 Future<bool> signUpAndInsertUser({
   required String email,
   required String password,

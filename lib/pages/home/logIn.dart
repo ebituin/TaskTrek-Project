@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/services/database.dart';
+import 'package:connectivity/connectivity.dart';
 
 class logIn extends StatefulWidget {
   const logIn({super.key});
@@ -22,23 +25,41 @@ class _logInState extends State<logIn> {
     super.dispose();
   }
 
-  void validationState() {
-    setState(() {
-      if (_emailController.text.isEmpty && _passwordController.text.isEmpty) {
-        incorrect = true;
-        connection = false; //internet
-      } else if (_emailController.text == 'user@user.com' &&
-          _passwordController.text == '123') {
-        incorrect = false;
-        connection = true; //internet
-        if (connection) {
-          Navigator.pushNamed(context, '/DashBoard');
-        }
-      } else {
-        incorrect = true;
-        connection = false; //internet
+  Future<bool> hasInternetConnection() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+
+    if (connectivityResult == ConnectivityResult.none) {
+      return false; // No connection
+    }
+
+    return true; // Either mobile or wifi
+  }
+
+  Future<void> validationState() async {
+    try {
+      final hasConnection = await hasInternetConnection();
+      if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+        setState(() {
+          incorrect = true;
+          connection = hasConnection;
+        });
+        return;
       }
-    });
+
+      final userId = await logInUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      if (userId.isNotEmpty) {
+        setState(() {
+          incorrect = false;
+          connection = hasConnection;
+        });
+        Navigator.pushNamed(context, '/DashBoard');
+      }
+    } catch (e) {
+      print('Error during log in: $e');
+    }
   }
 
   void clearErrors() {
@@ -318,7 +339,7 @@ class _logInState extends State<logIn> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Can not log in',
+                                'Cannot log in',
                                 style: TextStyle(
                                   color: const Color(0xFFF64040),
                                   fontSize: screenHeight * 0.018,
