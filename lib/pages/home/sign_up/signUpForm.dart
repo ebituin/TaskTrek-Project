@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasktrek/pages/home/sign_up/credentialsForm.dart';
 import 'package:tasktrek/pages/home/sign_up/informationForm.dart';
+import 'package:tasktrek/services/database.dart';
 import 'package:tasktrek/styles/styles.dart';
 
 class SignupForm extends StatefulWidget {
@@ -11,7 +12,49 @@ class SignupForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<SignupForm> {
-  bool isInformationForm = true; // Tracks which form is currently active
+  bool isInformationForm = true;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _contactNumberController =
+      TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _birthDateController = TextEditingController();
+
+  Future<void> insertNewUser() async {
+    try {
+      if (_emailController.text.isEmpty ||
+          _passwordController.text.isEmpty ||
+          _firstNameController.text.isEmpty ||
+          _lastNameController.text.isEmpty ||
+          _contactNumberController.text.isEmpty ||
+          _addressController.text.isEmpty ||
+          _birthDateController.text.isEmpty) {
+        throw Exception('All fields are required');
+      } else if (_passwordController.text != _confirmPasswordController.text) {
+        throw Exception('Passwords do not match');
+      }
+      final success = await signUpAndInsertUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        contactNumber: _contactNumberController.text,
+        address: _addressController.text,
+        birthDate: _birthDateController.text,
+      );
+      if (success) {
+        Navigator.pushNamed(context, '/DashBoard');
+      } else {
+        throw Exception('Failed to insert user');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +159,22 @@ class _SignupFormState extends State<SignupForm> {
             SizedBox(height: 20),
             // Show either the Information or Credentials form
             Expanded(
-              child: isInformationForm ? InformationForm() : CredentialsForm(),
+              child:
+                  isInformationForm
+                      ? InformationForm(
+                        firstNameController: _firstNameController,
+                        lastNameController: _lastNameController,
+                        contactNumberController: _contactNumberController,
+                        addressController: _addressController,
+                        birthDateController: _birthDateController,
+                      )
+                      : CredentialsForm(
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        confirmPasswordController: _confirmPasswordController,
+                      ),
             ),
+
             // Button to move to the next form
             Padding(
               padding: const EdgeInsets.all(35.0),
@@ -137,8 +194,7 @@ class _SignupFormState extends State<SignupForm> {
                                       false; // Move to Credentials form
                                 });
                               } else {
-                                Navigator.pushNamed(context, '/DashBoard');
-                                // Perform signup logic or navigate elsewhere
+                                insertNewUser();
                               }
                             },
                             style: ElevatedButton.styleFrom(

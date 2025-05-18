@@ -4,6 +4,40 @@ import 'package:tasktrek/styles/styles.dart';
 import 'package:tasktrek/widgets/textFieldRow.dart';
 
 class InformationForm extends StatelessWidget {
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController contactNumberController;
+  final TextEditingController addressController;
+  final TextEditingController birthDateController;
+
+  InformationForm({
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.contactNumberController,
+    required this.addressController,
+    required this.birthDateController,
+  }) {
+    print('InformationForm: ${firstNameController.text}');
+  }
+  // @override
+  // void dispose() {
+  //   _firstNameController.dispose();
+  //   _lastNameController.dispose();
+  //   _contactNumberController.dispose();
+  //   _addressController.dispose();
+  //   _birthDateController.dispose();
+  //   super.dispose();
+  // }
+
+  // void _clearInformation() {
+  //   _firstNameController.clear();
+  //   _lastNameController.clear();
+  //   _contactNumberController.clear();
+  //   _addressController.clear();
+  //   _birthDateController.clear();
+  //   setState(() {});
+  // }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -78,13 +112,25 @@ class InformationForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                buildTextFieldRow('First Name', 'NIWANG', _firstNameController),
-                buildTextFieldRow('Last Name', 'ARIZALA', _lastNameController),
-                buildTextFieldRow('Contact Number', '09704412399', _contactNumberController),
-                buildTextFieldRow('Address', 'Naga City, Camarines Sur', _addressController),
-                buildTextFieldRow('Birth Day', '1999-01-23', _birthDateController),
+                buildTextFieldRow('First Name', 'NIWANG', firstNameController),
+                buildTextFieldRow('Last Name', 'ARIZALA', lastNameController),
+                buildTextFieldRow(
+                  'Contact Number',
+                  '09704412399',
+                  contactNumberController,
+                ),
+                buildTextFieldRow(
+                  'Address',
+                  'Naga City, Camarines Sur',
+                  addressController,
+                ),
+                buildTextFieldRow(
+                  'Birth Day',
+                  '1999-01-23',
+                  birthDateController,
+                ),
                 GestureDetector(
-                  onTap: () {},
+                  //onTap: _clearInformation,
                   child: Text(
                     'Clear Information',
                     style: TextStyle(

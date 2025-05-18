@@ -3,6 +3,16 @@ import 'package:tasktrek/styles/styles.dart';
 import 'package:tasktrek/widgets/textFieldRow.dart';
 
 class CredentialsForm extends StatelessWidget {
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
+
+  CredentialsForm({
+    required this.emailController,
+    required this.passwordController,
+    required this.confirmPasswordController,
+  });
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -93,9 +103,22 @@ class CredentialsForm extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                buildTextFieldRow('Email', 'example@gmail.com', _emailController),
-                buildTextFieldRow('Password', 'enter password', _passwordController),
-                buildTextFieldRow('Confirm Password', 'enter password', _confirmPasswordController),
+                buildTextFieldRow(
+                  'Email',
+                  'example@gmail.com',
+                  emailController,
+                  
+                ),
+                buildTextFieldRow(
+                  'Password',
+                  'enter password',
+                  passwordController,
+                ),
+                buildTextFieldRow(
+                  'Confirm Password',
+                  'enter password',
+                  confirmPasswordController,
+                ),
               ],
             ),
           ),
