@@ -25,15 +25,15 @@ class _logInState extends State<logIn> {
     super.dispose();
   }
 
-  Future<bool> hasInternetConnection() async {
-    final connectivityResult = await Connectivity().checkConnectivity();
+  // Future<bool> hasInternetConnection() async {
+  //   final connectivityResult = await Connectivity().checkConnectivity();
 
-    if (connectivityResult == ConnectivityResult.none) {
-      return false; // No connection
-    }
+  //   if (connectivityResult == ConnectivityResult.none) {
+  //     return false; // No connection
+  //   }
 
-    return true; // Either mobile or wifi
-  }
+  //   return true; // Either mobile or wifi
+  // }
 
   Future<void> validationState() async {
     try {
