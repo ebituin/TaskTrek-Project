@@ -37,11 +37,11 @@ class _logInState extends State<logIn> {
 
   Future<void> validationState() async {
     try {
-      final hasConnection = await hasInternetConnection();
+      //final hasConnection = await hasInternetConnection();
       if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
         setState(() {
           incorrect = true;
-          connection = hasConnection;
+          connection = true;
         });
         return;
       }
@@ -50,12 +50,17 @@ class _logInState extends State<logIn> {
         email: _emailController.text,
         password: _passwordController.text,
       );
-      if (userId.isNotEmpty) {
+      if (userId) {
         setState(() {
           incorrect = false;
-          connection = hasConnection;
+          connection = true;
         });
         Navigator.pushNamed(context, '/DashBoard');
+      } else {
+        setState(() {
+          incorrect = true;
+          connection = true;
+        });
       }
     } catch (e) {
       print('Error during log in: $e');

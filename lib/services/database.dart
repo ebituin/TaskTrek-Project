@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-Future<String> logInUser({
+Future<bool> logInUser({
   required String email,
   required String password,
 }) async {
@@ -10,10 +10,10 @@ Future<String> logInUser({
       email: email,
       password: password,
     );
-    return logInResponse.user!.id;
+    return logInResponse.user != null;
   } catch (e) {
     print('Error during log in: $e');
-    return '';
+    return false;
   }
 }
 
