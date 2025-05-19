@@ -268,6 +268,8 @@ class _DashboardState extends State<Dashboard> {
         return Progress();
       case 2:
         return Settings();
+      case 3: // add task
+      
       default:
         return home();
     }
