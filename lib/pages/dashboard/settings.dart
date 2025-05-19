@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tasktrek/services/database.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/widgets/mediaSize.dart';
 import 'package:tasktrek/widgets/passwordTextfField.dart';
 
 class Settings extends StatefulWidget {
@@ -27,8 +29,8 @@ class _SettingsState extends State<Settings> {
                 vertical: screenHeight * 0.047,
                 horizontal: screenWidth * 0.05,
               ),
-              width: 304,
-              height: 342,
+              width: SizeConfig.scaleWidth(304),
+              height: SizeConfig.scaleHeight(342),
               decoration: BoxDecoration(
                 color: AppColors.secondaryColor,
                 borderRadius: BorderRadius.circular(15),
@@ -255,136 +257,141 @@ class _SettingsState extends State<Settings> {
                 ],
               ),
             ),
-            SizedBox(height: screenHeight * 0.15),
-            GestureDetector(
-              onTap: () {
-                changePassword(context);
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: 304,
-                height: 47,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      changePassword(context);
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 304,
+                      height: 47,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.lock_outline,
-                            size: 20,
-                            color: AppColors.accentColor,
-                          ),
-                          const SizedBox(width: 10),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Change Password',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.lock_outline,
+                                  size: 20,
                                   color: AppColors.accentColor,
                                 ),
-                              ),
-                              Text(
-                                'Manage your login credentials',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.accentColor.withOpacity(
-                                    0.75,
-                                  ),
+                                const SizedBox(width: 10),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Change Password',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.accentColor,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Manage your login credentials',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.accentColor
+                                            .withOpacity(0.75),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 15),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              size: 20,
+                              color: AppColors.accentColor,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        size: 20,
-                        color: AppColors.accentColor,
+                  ),
+                  SizedBox(height: screenHeight * 0.04),
+                  GestureDetector(
+                    onTap: () {
+                      logOutUser();
+                      Navigator.pushReplacementNamed(context, '/');
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 304,
+                      height: 47,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: screenHeight * 0.04),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/');
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: 304,
-                height: 47,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.lock_outline,
-                            size: 20,
-                            color: AppColors.accentColor,
-                          ),
-                          const SizedBox(width: 10),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Logout',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.lock_outline,
+                                  size: 20,
                                   color: AppColors.accentColor,
                                 ),
-                              ),
-                              Text(
-                                'Sign-out and come back for news later!',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.accentColor.withOpacity(
-                                    0.75,
-                                  ),
+                                const SizedBox(width: 10),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Logout',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.accentColor,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Sign-out and come back for news later!',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.accentColor
+                                            .withOpacity(0.75),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 15),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              size: 20,
+                              color: AppColors.accentColor,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        size: 20,
-                        color: AppColors.accentColor,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

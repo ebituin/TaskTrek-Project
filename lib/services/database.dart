@@ -17,6 +17,15 @@ Future<bool> logInUser({
   }
 }
 
+Future<void> logOutUser() async {
+  final supabase = Supabase.instance.client;
+  try {
+    await supabase.auth.signOut();
+  } catch (e) {
+    print('Error during log out: $e');
+  }
+}
+
 Future<bool> signUpAndInsertUser({
   required String email,
   required String password,

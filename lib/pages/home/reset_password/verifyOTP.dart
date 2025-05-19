@@ -65,7 +65,7 @@ class _forgot_pagePageState extends State<forgot_page_2> {
                             width: 39.0,
                             child: TextFormField(
                               style: TextStyle(
-                                fontSize: 10.0,
+                                fontSize: 14.0,
                                 ),
                                 textAlign: TextAlign.center,
                               decoration: InputDecoration(
@@ -91,7 +91,7 @@ class _forgot_pagePageState extends State<forgot_page_2> {
                             height: 38.0,
                             width: 39.0,
                             child: TextFormField(
-                              style: TextStyle(fontSize: 10.0),
+                              style: TextStyle(fontSize: 14.0),
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 filled: true,
@@ -114,7 +114,7 @@ class _forgot_pagePageState extends State<forgot_page_2> {
                             height: 38.0,
                             width: 39.0,
                             child: TextFormField(
-                              style: TextStyle(fontSize: 10.0),
+                              style: TextStyle(fontSize: 14.0),
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 filled: true,
@@ -138,7 +138,7 @@ class _forgot_pagePageState extends State<forgot_page_2> {
                             height: 38.0,
                             width: 39.0,
                             child: TextFormField(
-                              style: TextStyle(fontSize: 10.0),
+                              style: TextStyle(fontSize: 14.0),
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 filled: true,

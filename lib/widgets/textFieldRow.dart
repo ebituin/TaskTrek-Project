@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/widgets/mediaSize.dart';
 
 Widget buildTextFieldRow(
   String label,
   String hint,
   TextEditingController controller,
+  Icon icon,
 ) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -14,7 +16,7 @@ Widget buildTextFieldRow(
       children: [
         Row(
           children: [
-            SizedBox(width: 50),
+            Container(width: SizeConfig.scaleWidth(55)),
             Text(
               label,
               style: TextStyle(
@@ -30,11 +32,11 @@ Widget buildTextFieldRow(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.circle, color: AppColors.accentColor),
+            icon,
             SizedBox(width: 10),
             SizedBox(
-              height: 38,
-              width: 258,
+              height: SizeConfig.scaleHeight(38),
+              width: SizeConfig.scaleWidth(258) ,
               child: TextFormField(
                 controller: controller,
                 textAlign: TextAlign.start,
@@ -73,7 +75,7 @@ Widget buildTextFieldRow(
             ),
           ],
         ),
-        SizedBox(height: 20),
+        SizedBox(height: SizeConfig.scaleHeight(10)),
       ],
     ),
   );

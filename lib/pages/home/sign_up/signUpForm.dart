@@ -3,6 +3,7 @@ import 'package:tasktrek/pages/home/sign_up/credentialsForm.dart';
 import 'package:tasktrek/pages/home/sign_up/informationForm.dart';
 import 'package:tasktrek/services/database.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/widgets/mediaSize.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -220,7 +221,7 @@ class _SignupFormState extends State<SignupForm> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: SizeConfig.scaleHeight(20)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

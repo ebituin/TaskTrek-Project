@@ -12,8 +12,6 @@ import 'package:tasktrek/pages/home/logIn.dart';
 class forgot_Reset extends StatefulWidget {
   const forgot_Reset({super.key});
 
-
-
   @override
   State<forgot_Reset> createState() => _forgot_ResetPageState();
 }
@@ -34,12 +32,13 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
     super.dispose();
   }
 
-  void passwordVisibilitySate(){
+  void passwordVisibilitySate() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
-  void newPasswordVisibilitySate(){
+
+  void newPasswordVisibilitySate() {
     setState(() {
       _newObscureText = !_newObscureText;
     });
@@ -49,9 +48,7 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF6C96B5),
-      appBar: AppBar(
-        backgroundColor:Color(0xFF6C96B5),
-      ),
+      appBar: AppBar(backgroundColor: Color(0xFF6C96B5)),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 200.0),
@@ -60,10 +57,7 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
             children: [
               Text(
                 'Reset Password',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 60),
               Column(
@@ -79,25 +73,24 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                             width: 15,
                             child: Opacity(
                               opacity: 0.8,
-                              child: Image.asset(
-                              'lib/assets/images/padlock.png',
+                              child: Icon(
+                                Icons.lock_outline,
+                                color: Colors.black,
+                                size: 14.5,
                               ),
                             ),
                           ),
                         ],
-                        
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(width: 5),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              'Confirm New Password',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          SizedBox(height: 5,),
+                            'Confirm New Password',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          SizedBox(height: 5),
                           SizedBox(
                             height: 38.0,
                             width: 258,
@@ -109,11 +102,15 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                                 fillColor: Colors.white,
                                 hintText: 'PenPineappleApplePen',
                                 suffixIcon: IconButton(
-                                  icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+                                  icon: Icon(
+                                    _obscureText
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
                                   onPressed: passwordVisibilitySate,
                                 ),
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6)
+                                  borderRadius: BorderRadius.circular(6),
                                 ),
                                 contentPadding: EdgeInsets.symmetric(
                                   vertical: 10.0,
@@ -124,31 +121,34 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                             ),
                           ),
                           SizedBox(height: 10),
-                
-                          
                         ],
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(
                     height: 15,
                     child: Center(
-                      child: emptyText ? 
-                      Text(
-                        'Password cannot be empty.',
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 255, 0, 0), fontSize: 12,
-                        )
-                      ) : passwordNotMatch ? 
-                      Text(
-                        'Password do not matched. Please try again.',
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 255, 0, 0), fontSize: 12,
-                        ) 
-                      ) : null
+                      child:
+                          emptyText
+                              ? Text(
+                                'Password cannot be empty.',
+                                style: TextStyle(
+                                  color: const Color.fromARGB(255, 255, 0, 0),
+                                  fontSize: 12,
+                                ),
+                              )
+                              : passwordNotMatch
+                              ? Text(
+                                'Password do not matched. Please try again.',
+                                style: TextStyle(
+                                  color: const Color.fromARGB(255, 255, 0, 0),
+                                  fontSize: 12,
+                                ),
+                              )
+                              : null,
                     ),
                   ),
-                  SizedBox(height: 5,),
+                  SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -158,27 +158,23 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                           SizedBox(
                             height: 15,
                             width: 15,
-                            child: Opacity(
-                              opacity: 0.8,
-                              child: Image.asset(
-                              'lib/assets/images/padlock.png',
-                              ),
+                            child: Icon(
+                              Icons.lock_outline,
+                              color: Colors.black,
+                              size: 14.5,
                             ),
-                          )
+                          ),
                         ],
-                        
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(width: 5),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              'Confirm New Password',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          SizedBox(height: 5,),
+                            'Confirm New Password',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          SizedBox(height: 5),
                           SizedBox(
                             height: 38.0,
                             width: 258,
@@ -190,11 +186,15 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                                 fillColor: Colors.white,
                                 hintText: 'PenPineappleApplePen',
                                 suffixIcon: IconButton(
-                                  icon: Icon(_newObscureText ? Icons.visibility_off : Icons.visibility),
+                                  icon: Icon(
+                                    _newObscureText
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
                                   onPressed: newPasswordVisibilitySate,
                                 ),
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6)
+                                  borderRadius: BorderRadius.circular(6),
                                 ),
                                 contentPadding: EdgeInsets.symmetric(
                                   vertical: 10.0,
@@ -205,62 +205,67 @@ class _forgot_ResetPageState extends State<forgot_Reset> {
                             ),
                           ),
                           SizedBox(height: 10),
-                
-                          
                         ],
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(
                     height: 15,
                     child: Center(
-                      child: confirmEmptyText ? 
-                      Text(
-                        'Password cannot be empty.',
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 255, 0, 0), fontSize: 12,
-                        )
-                      ) : passwordNotMatch ? 
-                      Text(
-                        'Password do not matched. Please try again.',
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 255, 0, 0), fontSize: 12,
-                        ) 
-                      ) : null
+                      child:
+                          confirmEmptyText
+                              ? Text(
+                                'Password cannot be empty.',
+                                style: TextStyle(
+                                  color: const Color.fromARGB(255, 255, 0, 0),
+                                  fontSize: 12,
+                                ),
+                              )
+                              : passwordNotMatch
+                              ? Text(
+                                'Password do not matched. Please try again.',
+                                style: TextStyle(
+                                  color: const Color.fromARGB(255, 255, 0, 0),
+                                  fontSize: 12,
+                                ),
+                              )
+                              : null,
                     ),
                   ),
-                  SizedBox(height: 15,)
+                  SizedBox(height: 15),
                 ],
               ),
-              
+
               SizedBox(
                 width: 286,
                 height: 43,
                 child: ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     setState(() {
                       emptyText = _passwordController.text.isEmpty;
-                      confirmEmptyText = _confirmPasswordController.text.isEmpty;
-                      passwordNotMatch = _passwordController.text != _confirmPasswordController.text;
+                      confirmEmptyText =
+                          _confirmPasswordController.text.isEmpty;
+                      passwordNotMatch =
+                          _passwordController.text !=
+                          _confirmPasswordController.text;
                     });
-                    !passwordNotMatch && !emptyText && !confirmEmptyText?
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => logIn(),
-                      ),
-                    ):null;
+                    !passwordNotMatch && !emptyText && !confirmEmptyText
+                        ? Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => logIn()),
+                        )
+                        : null;
                   },
                   style: ElevatedButton.styleFrom(
-                          iconColor: Colors.black,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          backgroundColor:Colors.black,
-                        ),
+                    iconColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    backgroundColor: Colors.black,
+                  ),
                   child: Text(
                     'Reset Password',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white
-                    ),
+                    style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasktrek/pages/home/sign_up/signUpForm.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/widgets/mediaSize.dart';
 import 'package:tasktrek/widgets/textFieldRow.dart';
 
 class InformationForm extends StatelessWidget {
@@ -40,15 +41,13 @@ class InformationForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
       padding: EdgeInsets.all(20),
       child: Column(
         children: [
           SizedBox(
-            width: screenWidth * 0.7,
+            width: SizeConfig.scaleWidth(350),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -98,7 +97,7 @@ class InformationForm extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.centerLeft,
-            height: screenHeight * 0.08,
+            height: SizeConfig.scaleHeight(55),
             child: Text(
               'Personal Information',
               style: TextStyle(
@@ -112,22 +111,25 @@ class InformationForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                buildTextFieldRow('First Name', 'NIWANG', firstNameController),
-                buildTextFieldRow('Last Name', 'ARIZALA', lastNameController),
+                buildTextFieldRow('First Name', 'NIWANG', firstNameController, Icon(Icons.circle, color: AppColors.accentColor)),
+                buildTextFieldRow('Last Name', 'ARIZALA', lastNameController, Icon(Icons.circle, color: AppColors.accentColor)),
                 buildTextFieldRow(
                   'Contact Number',
                   '09704412399',
                   contactNumberController,
+                  Icon(Icons.circle, color: AppColors.accentColor)
                 ),
                 buildTextFieldRow(
                   'Address',
                   'Naga City, Camarines Sur',
                   addressController,
+                  Icon(Icons.circle, color: AppColors.accentColor)
                 ),
                 buildTextFieldRow(
                   'Birth Day',
                   '1999-01-23',
                   birthDateController,
+                  Icon(Icons.circle, color: AppColors.accentColor)
                 ),
                 GestureDetector(
                   //onTap: _clearInformation,

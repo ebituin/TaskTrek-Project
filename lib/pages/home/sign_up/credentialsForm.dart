@@ -107,17 +107,20 @@ class CredentialsForm extends StatelessWidget {
                   'Email',
                   'example@gmail.com',
                   emailController,
+                  Icon(Icons.circle, color: AppColors.accentColor)
                   
                 ),
                 buildTextFieldRow(
                   'Password',
                   'enter password',
                   passwordController,
+                  Icon(Icons.circle, color: AppColors.accentColor)
                 ),
                 buildTextFieldRow(
                   'Confirm Password',
                   'enter password',
                   confirmPasswordController,
+                  Icon(Icons.circle, color: AppColors.accentColor)
                 ),
               ],
             ),
