@@ -22,7 +22,7 @@ class _SettingsState extends State<Settings> {
 
   Future<void> _loadUserData() async {
     try {
-      final data = await fetchUserData();
+      final data = await UserCache.getUserData();
       setState(() {
         firstName = data['firstName']!;
         lastName = data['lastName']!;
@@ -45,8 +45,6 @@ class _SettingsState extends State<Settings> {
   String address = '';
   String email = '';
 
-  Future<Map<String, String>> userData = fetchUserData();
-
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Scaffold(
@@ -60,12 +58,9 @@ class _SettingsState extends State<Settings> {
             SizedBox(height: SizeConfig.scaleHeight(15)),
             Container(
               constraints: BoxConstraints(maxHeight: 342, minHeight: 342),
-              padding: EdgeInsets.symmetric(
-                vertical: SizeConfig.scaleHeight(40),
-                horizontal: SizeConfig.scaleWidth(20),
-              ),
-              width: SizeConfig.scaleWidth(304),
-              height: SizeConfig.scaleHeight(342),
+              padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+              width: 304,
+              height: 342,
               decoration: BoxDecoration(
                 color: AppColors.secondaryColor,
                 borderRadius: BorderRadius.circular(15),
@@ -126,12 +121,7 @@ class _SettingsState extends State<Settings> {
   Widget buildInfoHeader(String title, {IconData? icon}) {
     return Row(
       children: [
-        if (icon != null)
-          Icon(
-            icon,
-            size: SizeConfig.scaleWidth(20),
-            color: AppColors.accentColor,
-          ),
+        if (icon != null) Icon(icon, size: 20, color: AppColors.accentColor),
         if (icon != null) const SizedBox(width: 5),
         Text(
           title,
@@ -173,7 +163,7 @@ class _SettingsState extends State<Settings> {
     return Row(
       children: [
         SizedBox(
-          width: SizeConfig.scaleWidth(120),
+          width: 120,
           child: Text(
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -190,7 +180,7 @@ class _SettingsState extends State<Settings> {
           )
         else
           SizedBox(
-            width: SizeConfig.scaleWidth(100),
+            width: 100,
             child: Text(
               value,
               style: TextStyle(fontSize: 14, color: AppColors.textColor),
@@ -216,8 +206,8 @@ class _SettingsState extends State<Settings> {
           minWidth: 304,
         ),
         alignment: Alignment.center,
-        width: SizeConfig.scaleWidth(304),
-        height: SizeConfig.scaleHeight(47),
+        width: 304,
+        height: 47,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -233,7 +223,6 @@ class _SettingsState extends State<Settings> {
                   Icon(icon, size: 20, color: AppColors.accentColor),
                   const SizedBox(width: 10),
                   SizedBox(
-                    width: SizeConfig.scaleWidth(200),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,

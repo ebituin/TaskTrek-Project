@@ -224,9 +224,6 @@ class _logInState extends State<logIn> {
                     ),
                   ),
 
-                  // Error Message
-                  SizedBox(height: SizeConfig.scaleHeight(60)),
-
                   // Sign up prompt
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -277,8 +274,8 @@ class _logInState extends State<logIn> {
 
   Widget _buildErrorBox() {
     return Container(
-      width: SizeConfig.scaleWidth(319),
-      height: SizeConfig.scaleHeight(68),
+      width: 319,
+      height: 68,
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.errorColor,

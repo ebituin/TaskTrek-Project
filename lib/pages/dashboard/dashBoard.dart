@@ -190,16 +190,14 @@ class _DashboardState extends State<Dashboard> {
 
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(child: _getSelectedPage(_selectedPage)),
-            SizedBox(height: screenHeight * 0.02),
             Container(
-              width: screenWidth * 0.75, // was 280
-              height: screenHeight * 0.06, // was 44
-              margin: EdgeInsets.all(screenWidth * 0.05), // was 20
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
+              height: 66,
+              width: screenWidth * 0.75,
+              margin: EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -243,8 +241,6 @@ class _DashboardState extends State<Dashboard> {
         });
       },
       child: Container(
-        width: screenWidth * 0.22, // was 90
-        height: double.infinity,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
         child: Opacity(
           opacity: _selectedPage == index ? 1 : 0.5,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tasktrek/services/database.dart';
 import 'package:tasktrek/styles/styles.dart';
 import 'package:tasktrek/widgets/mediaSize.dart';
 
 class Progress extends StatefulWidget {
-  bool isAdd;
+  final bool isAdd;
+
   Progress({this.isAdd = false, super.key});
 
   @override
@@ -11,25 +13,49 @@ class Progress extends StatefulWidget {
 }
 
 class _ProgressState extends State<Progress> {
-  void isAddState() {
+  bool _isAdd = false;
+  String firstName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _isAdd = widget.isAdd;
+    _loadUserData();
+  }
+
+  void toggleAddState() {
     setState(() {
-      widget.isAdd = !widget.isAdd;
+      _isAdd = !_isAdd;
     });
   }
+
+  Future<void> _loadUserData() async {
+    try {
+      final data = await UserCache.getUserData();
+      setState(() {
+        firstName = data['firstName']!;
+      });
+    } catch (e) {
+      print("Error fetching user data: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return !widget.isAdd ? progressPage(isAdd: isAddState) : addTask(isAdd: isAddState);
+    return !_isAdd
+        ? progressPage(isAdd: toggleAddState, firstName: firstName)
+        : addTask(isAdd: toggleAddState);
   }
 }
 
-Widget progressPage({required VoidCallback isAdd}) {
+Widget progressPage({required VoidCallback isAdd, required String firstName}) {
   return Padding(
     padding: const EdgeInsets.all(40.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 40),
-        Text('Hi, Name!', style: AppTextStyles.title),
+        Text('Hi, $firstName!', style: AppTextStyles.title),
         SizedBox(height: 10),
         Text(
           'Here is your current task/s',
