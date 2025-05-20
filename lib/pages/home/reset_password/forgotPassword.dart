@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:tasktrek/pages/home/reset_password/resetPassword.dart';
 import 'package:tasktrek/pages/home/reset_password/verifyOTP.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/widgets/passwordTextfField.dart';
 import 'package:tasktrek/widgets/textFieldRow.dart';
 
 class ForgotPage extends StatefulWidget {
@@ -42,11 +43,11 @@ class _ForgotPageState extends State<ForgotPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          buildTextFieldRow(
-            'USERNAME',
-            'johndoe@gmail.com',
-            _usernameController,
-            Icon(Icons.person_outline_sharp, color: AppColors.accentColor),
+          PasswordTextFieldRow(
+            label: 'USERNAME',
+            hint: 'johndoe@gmail.com',
+            controller: _usernameController,
+            icon: Icon(Icons.person_outline_sharp, color: AppColors.accentColor),
           ),
           Row(
             children: [

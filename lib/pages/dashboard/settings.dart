@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:tasktrek/services/database.dart';
 import 'package:tasktrek/styles/styles.dart';
 import 'package:tasktrek/widgets/mediaSize.dart';
 import 'package:tasktrek/widgets/passwordTextfField.dart';
+import 'package:tasktrek/widgets/textFieldRow.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -13,21 +15,54 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    try {
+      final data = await fetchUserData();
+      setState(() {
+        firstName = data['firstName']!;
+        lastName = data['lastName']!;
+        birthDate = data['birthDate']!;
+        contactNumber = data['contactNumber']!;
+        address = data['address']!;
+        email = data['email']!;
+      });
+    } catch (e) {
+      print(e);
+      // Optionally show an error dialog/snackbar
+    }
+  }
+
+  @override
+  String firstName = '';
+  String lastName = '';
+  String birthDate = '';
+  String contactNumber = '';
+  String address = '';
+  String email = '';
+
+  Future<Map<String, String>> userData = fetchUserData();
+
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    SizeConfig.init(context);
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: screenHeight * 0.03),
+            SizedBox(height: SizeConfig.scaleHeight(25)),
             Text('Account Information', style: AppTextStyles.title),
-            SizedBox(height: screenHeight * 0.02),
+            SizedBox(height: SizeConfig.scaleHeight(15)),
             Container(
+              constraints: BoxConstraints(maxHeight: 342, minHeight: 342),
               padding: EdgeInsets.symmetric(
-                vertical: screenHeight * 0.047,
-                horizontal: screenWidth * 0.05,
+                vertical: SizeConfig.scaleHeight(40),
+                horizontal: SizeConfig.scaleWidth(20),
               ),
               width: SizeConfig.scaleWidth(304),
               height: SizeConfig.scaleHeight(342),
@@ -36,219 +71,25 @@ class _SettingsState extends State<Settings> {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            size: screenWidth * 0.05,
-                            color: AppColors.accentColor,
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            'Personal Information',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.accentColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Edit',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFF6CDAB3),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          SizedBox(
-                            width: screenWidth * 0.05,
-                            child: Image.asset(
-                              'lib/assets/images/Union.png',
-                              color: Color(0xFF6CDAB3),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'First name:',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'John Kane',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'Last name:',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'Doe',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'Birthdate:',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'Jan 1, 2023',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.phone,
-                        size: screenWidth * 0.05,
-                        color: AppColors.accentColor,
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        'Contact Information',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'Phone No.:',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          '0970 322 5561',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.3,
-                        child: Text(
-                          'Email Address:',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          width: screenWidth * 0.3,
-                          child: Text(
-                            'jdoe@gmail.com',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.textColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.location_on,
-                        size: screenWidth * 0.05,
-                        color: AppColors.accentColor,
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        'Address',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                  buildInfoHeader('Personal Information', icon: Icons.person),
+                  buildInfoRow('First name:', firstName),
+                  buildInfoRow('Last name:', lastName),
+                  buildInfoRow('Birthdate:', birthDate),
+                  buildInfoHeader('Contact Information', icon: Icons.phone),
+                  buildInfoRow('Phone No.:', contactNumber),
+                  buildInfoRow('Email Address:', email, expand: true),
+                  buildInfoHeader('Address', icon: Icons.location_on),
+
                   Row(
                     children: [
                       Expanded(
-                        child: SizedBox(
-                          child: Text(
-                            'L-5, BLK-22, Spriteville San Felipe, Naga City, Camarines Sur',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.textColor,
-                            ),
+                        child: Text(
+                          address,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.textColor,
                           ),
                         ),
                       ),
@@ -257,138 +98,163 @@ class _SettingsState extends State<Settings> {
                 ],
               ),
             ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+            const Spacer(),
+            buildBottomButton(
+              icon: Icons.lock_outline,
+              title: 'Change Password',
+              subtitle: 'Manage your login credentials',
+              onTap: () => changePassword(context),
+            ),
+            SizedBox(height: SizeConfig.scaleHeight(15)),
+            buildBottomButton(
+              icon: Icons.lock_outline,
+              title: 'Logout',
+              subtitle: 'Sign-out and come back for news later!',
+
+              onTap: () {
+                logOutUser();
+                Navigator.pushReplacementNamed(context, '/');
+              },
+            ),
+            SizedBox(height: SizeConfig.scaleHeight(30)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildInfoHeader(String title, {IconData? icon}) {
+    return Row(
+      children: [
+        if (icon != null)
+          Icon(
+            icon,
+            size: SizeConfig.scaleWidth(20),
+            color: AppColors.accentColor,
+          ),
+        if (icon != null) const SizedBox(width: 5),
+        Text(
+          title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+            color: AppColors.accentColor,
+          ),
+        ),
+        const Spacer(),
+        if (title == 'Personal Information')
+          Row(
+            children: [
+              Text(
+                'Edit',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Color(0xFF6CDAB3),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(width: 5),
+              SizedBox(
+                width: SizeConfig.scaleWidth(20),
+                child: Image.asset(
+                  'lib/assets/images/Union.png',
+                  color: Color(0xFF6CDAB3),
+                ),
+              ),
+            ],
+          ),
+      ],
+    );
+  }
+
+  Widget buildInfoRow(String label, String value, {bool expand = false}) {
+    return Row(
+      children: [
+        SizedBox(
+          width: SizeConfig.scaleWidth(120),
+          child: Text(
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            label,
+            style: TextStyle(fontSize: 14, color: AppColors.textColor),
+          ),
+        ),
+        if (expand)
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(fontSize: 14, color: AppColors.textColor),
+            ),
+          )
+        else
+          SizedBox(
+            width: SizeConfig.scaleWidth(100),
+            child: Text(
+              value,
+              style: TextStyle(fontSize: 14, color: AppColors.textColor),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget buildBottomButton({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        constraints: BoxConstraints(
+          maxHeight: 47,
+          minHeight: 47,
+          maxWidth: 304,
+          minWidth: 304,
+        ),
+        alignment: Alignment.center,
+        width: SizeConfig.scaleWidth(304),
+        height: SizeConfig.scaleHeight(47),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      changePassword(context);
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 304,
-                      height: 47,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.lock_outline,
-                                  size: 20,
-                                  color: AppColors.accentColor,
-                                ),
-                                const SizedBox(width: 10),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Change Password',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.accentColor,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Manage your login credentials',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.accentColor
-                                            .withOpacity(0.75),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                  Icon(icon, size: 20, color: AppColors.accentColor),
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    width: SizeConfig.scaleWidth(200),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.accentColor,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              size: 20,
-                              color: AppColors.accentColor,
-                            ),
+                        ),
+                        Text(
+                          subtitle,
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.accentColor.withOpacity(0.75),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.04),
-                  GestureDetector(
-                    onTap: () {
-                      logOutUser();
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 304,
-                      height: 47,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.lock_outline,
-                                  size: 20,
-                                  color: AppColors.accentColor,
-                                ),
-                                const SizedBox(width: 10),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Logout',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.accentColor,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Sign-out and come back for news later!',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.accentColor
-                                            .withOpacity(0.75),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              size: 20,
-                              color: AppColors.accentColor,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -414,10 +280,10 @@ void changePassword(BuildContext context) {
         (context) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: SizedBox(
-            height: 329,
-            width: 441,
+            height: 315,
+            width: SizeConfig.scaleWidth(441),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   'New Password',
@@ -427,68 +293,64 @@ void changePassword(BuildContext context) {
                     color: AppColors.accentColor,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Set the new password for your account so you can login and access all the features.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 10, color: AppColors.textColor),
                 ),
-                SizedBox(height: 20),
-
-                // Password Field
+                const SizedBox(height: 20),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20, right: 8),
-                      child: Icon(
-                        Icons.lock_outline,
-                        size: 20,
-                        color: AppColors.accentColor,
-                      ),
-                    ),
                     Expanded(
-                      child: PasswordTextField(
+                      child: PasswordTextFieldRow(
                         controller: passwordController,
                         label: 'Password',
+                        isPasswordVisible: true,
+                        isPassword: true,
+                        hint: 'Enter your password',
+                        icon: Icon(Icons.lock_outline),
                       ),
                     ),
                   ],
                 ),
-
-                SizedBox(height: 10),
-
-                // Confirm Password Field
+                const SizedBox(height: 10),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20, right: 8),
-                      child: Icon(
-                        Icons.lock_outline,
-                        size: 20,
-                        color: AppColors.accentColor,
-                      ),
-                    ),
                     Expanded(
-                      child: PasswordTextField(
+                      child: PasswordTextFieldRow(
                         controller: confirmPasswordController,
                         label: 'Confirm Password',
+                        isPasswordVisible: true,
+                        isPassword: true,
+                        hint: 'Enter your password',
+                        icon: Icon(Icons.lock_outline),
                       ),
                     ),
                   ],
                 ),
-
-                Spacer(),
-
-                // Buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                const Spacer(),
+                Column(
                   children: [
+                    SizedBox(
+                      width: 220,
+                      height: 42,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text('Change Password'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.accentColor,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                      ),
+                    ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
+                      onTap: () => Navigator.pop(context),
                       child: Container(
                         width: 100,
                         height: 40,
@@ -503,23 +365,6 @@ void changePassword(BuildContext context) {
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.red,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 220,
-                      height: 42,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Change Password'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.accentColor,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                       ),

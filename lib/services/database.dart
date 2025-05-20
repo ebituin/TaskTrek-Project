@@ -65,3 +65,35 @@ Future<bool> signUpAndInsertUser({
     return false;
   }
 }
+
+Future<Map<String, String>> fetchUserData() async {
+  final supabase = Supabase.instance.client;
+  final user = supabase.auth.currentUser;
+
+  if (user == null) {
+    throw Exception("User not logged in");
+  }
+
+  try {
+    final response =
+        await supabase
+            .from('users')
+            .select(
+              'first_name, last_name, birth_date, contact_number, address',
+            )
+            .eq('user_id', user.id)
+            .single();
+
+    return {
+      'firstName': response['first_name']?.toString() ?? '',
+      'lastName': response['last_name']?.toString() ?? '',
+      'birthDate': response['birth_date']?.toString() ?? '',
+      'contactNumber': response['contact_number']?.toString() ?? '',
+      'address': response['address']?.toString() ?? '',
+      'email': user.email ?? '',
+    };
+  } catch (e) {
+    print('Error during fetch user data: $e');
+    throw Exception('Error fetching user data: $e');
+  }
+}

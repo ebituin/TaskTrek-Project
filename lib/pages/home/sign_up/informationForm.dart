@@ -41,7 +41,6 @@ class InformationForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: EdgeInsets.all(20),
       child: Column(
@@ -111,25 +110,29 @@ class InformationForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                buildTextFieldRow('First Name', 'NIWANG', firstNameController, Icon(Icons.circle, color: AppColors.accentColor)),
-                buildTextFieldRow('Last Name', 'ARIZALA', lastNameController, Icon(Icons.circle, color: AppColors.accentColor)),
-                buildTextFieldRow(
-                  'Contact Number',
-                  '09704412399',
-                  contactNumberController,
-                  Icon(Icons.circle, color: AppColors.accentColor)
+                PasswordTextFieldRow(
+                  label: 'First Name',
+                  hint: 'NIWANG',
+                  controller: firstNameController,
+                  icon: Icon(Icons.circle, color: AppColors.accentColor),
                 ),
-                buildTextFieldRow(
-                  'Address',
-                  'Naga City, Camarines Sur',
-                  addressController,
-                  Icon(Icons.circle, color: AppColors.accentColor)
+                PasswordTextFieldRow(
+                  label: 'Last Name',
+                  hint: 'ARIZALA',
+                  controller: lastNameController,
+                  icon: Icon(Icons.circle, color: AppColors.accentColor),
                 ),
-                buildTextFieldRow(
-                  'Birth Day',
-                  '1999-01-23',
-                  birthDateController,
-                  Icon(Icons.circle, color: AppColors.accentColor)
+                PasswordTextFieldRow(
+                  label: 'Address',
+                  hint: 'Naga City, Camarines Sur',
+                  controller: addressController,
+                  icon: Icon(Icons.circle, color: AppColors.accentColor),
+                ),
+                PasswordTextFieldRow(
+                  label: 'Birth Day',
+                  hint: '1999-01-23',
+                  controller: birthDateController,
+                  icon: Icon(Icons.circle, color: AppColors.accentColor),
                 ),
                 GestureDetector(
                   //onTap: _clearInformation,

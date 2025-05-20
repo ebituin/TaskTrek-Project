@@ -1,89 +1,111 @@
 import 'package:flutter/material.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/widgets/mediaSize.dart';
 
-class PasswordTextField extends StatefulWidget {
-  final TextEditingController? controller;
+class PasswordFieldRow extends StatefulWidget {
   final String? label;
+  final String? hint;
+  final TextEditingController? controller;
+  final Icon? icon;
 
-  const PasswordTextField({Key? key, this.controller, this.label}) : super(key: key);
+  const PasswordFieldRow({
+    this.label,
+    this.hint,
+    this.controller,
+    this.icon,
+    super.key,
+  });
 
   @override
-  _PasswordTextFieldState createState() => _PasswordTextFieldState();
+  State<PasswordFieldRow> createState() => _PasswordFieldRowState();
 }
 
-class _PasswordTextFieldState extends State<PasswordTextField> {
-  bool _obscureText = true;
+class _PasswordFieldRowState extends State<PasswordFieldRow> {
+  bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 12), // leave space for label
-          child: SizedBox(
-            width: 300,
-            height: 40,
-            child: TextField(
-              controller: widget.controller,
-              obscureText: _obscureText,
-              cursorColor: AppColors.accentColor,
-              cursorHeight: 15,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 12,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(width: SizeConfig.scaleWidth(55)),
+              Text(
+                widget.label ?? '',
+                style: TextStyle(
+                  color: AppColors.accentColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.accentColor,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.accentColor,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: IconButton(
-                    icon: Icon(
-                      size: 20,
-                      _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                      color: AppColors.accentColor,
+              ),
+            ],
+          ),
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              widget.icon ?? SizedBox(),
+              SizedBox(width: 10),
+              SizedBox(
+                height: SizeConfig.scaleHeight(38),
+                width: SizeConfig.scaleWidth(258),
+                child: TextFormField(
+                  controller: widget.controller,
+                  obscureText: _obscure,
+                  cursorColor: AppColors.accentColor,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscure
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: AppColors.accentColor,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscure = !_obscure;
+                        });
+                      },
                     ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
+                    hintText: widget.hint,
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 10,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: AppColors.accentColor,
+                        width: 2,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: AppColors.accentColor,
+                        width: 2,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: AppColors.accentColor,
+                        width: 2.5,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
-        ),
-
-        Positioned(
-          left: 12,
-          top: 0,
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(
-              widget.label ?? 'No label',
-              style: const TextStyle(
-                fontSize: 13,
-                color: AppColors.accentColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ],
+          SizedBox(height: SizeConfig.scaleHeight(10)),
+        ],
+      ),
     );
   }
 }

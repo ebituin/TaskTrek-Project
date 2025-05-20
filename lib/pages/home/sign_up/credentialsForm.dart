@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasktrek/styles/styles.dart';
+import 'package:tasktrek/widgets/passwordTextfField.dart';
 import 'package:tasktrek/widgets/textFieldRow.dart';
 
 class CredentialsForm extends StatelessWidget {
@@ -103,24 +104,25 @@ class CredentialsForm extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                buildTextFieldRow(
-                  'Email',
-                  'example@gmail.com',
-                  emailController,
-                  Icon(Icons.circle, color: AppColors.accentColor)
-                  
+                PasswordTextFieldRow(
+                  label: 'Email',
+                  hint: 'example@gmail.com',
+                  controller: emailController,
+                  icon: Icon(Icons.circle, color: AppColors.accentColor),
                 ),
-                buildTextFieldRow(
-                  'Password',
-                  'enter password',
-                  passwordController,
-                  Icon(Icons.circle, color: AppColors.accentColor)
+                PasswordTextFieldRow(
+                  label: 'Password',
+                  hint: 'enter password',
+                  controller: passwordController,
+                  icon: Icon(Icons.circle, color: AppColors.accentColor),
+                  isPassword: true,
                 ),
-                buildTextFieldRow(
-                  'Confirm Password',
-                  'enter password',
-                  confirmPasswordController,
-                  Icon(Icons.circle, color: AppColors.accentColor)
+                PasswordTextFieldRow(
+                  label: 'Confirm Password',
+                  hint: 'enter password',
+                  controller: confirmPasswordController,
+                  icon: Icon(Icons.circle, color: AppColors.accentColor),
+                  isPassword: true,
                 ),
               ],
             ),

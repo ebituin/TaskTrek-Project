@@ -101,7 +101,8 @@ class _logInState extends State<logIn> {
                       'Welcome !',
                       style: TextStyle(
                         color: AppColors.textWelcome,
-                        fontSize: SizeConfig.scaleWidth(40),
+                        fontSize: 40,
+
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Inter',
                       ),
@@ -110,8 +111,12 @@ class _logInState extends State<logIn> {
 
                   // Login Box
                   Container(
-                    width: SizeConfig.scaleWidth(333),
-                    height: SizeConfig.scaleHeight(342),
+                    constraints: BoxConstraints(
+                      maxHeight: 342,
+                      maxWidth: 333,
+                      minHeight: 342,
+                      minWidth: 333,
+                    ),
                     padding: EdgeInsets.all(SizeConfig.scaleWidth(20)),
                     decoration: BoxDecoration(
                       color: AppColors.loginBackground,
@@ -210,15 +215,13 @@ class _logInState extends State<logIn> {
 
                   SizedBox(
                     height: SizeConfig.scaleHeight(100),
-                    child:
-                    Column(
+                    child: Column(
                       children: [
                         (!connection || incorrect)
                             ? _buildErrorBox()
-                            : SizedBox(height: SizeConfig.scaleHeight(100),),
+                            : SizedBox(height: SizeConfig.scaleHeight(100)),
                       ],
-                    )
-                        
+                    ),
                   ),
 
                   // Error Message
