@@ -259,7 +259,7 @@ class _DashboardState extends State<Dashboard> {
   Widget _getSelectedPage(int index) {
     switch (index) {
       case 0:
-        return home();
+        return Home();
       case 1:
         return Progress();
       case 2:
@@ -267,7 +267,7 @@ class _DashboardState extends State<Dashboard> {
       case 3: // add task
 
       default:
-        return home();
+        return Home();
     }
   }
 }
