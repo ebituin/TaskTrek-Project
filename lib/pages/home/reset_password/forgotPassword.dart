@@ -31,66 +31,76 @@ class _ForgotPageState extends State<ForgotPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFF6C96B5),
       appBar: AppBar(
         backgroundColor: const Color(0xFF6C96B5),
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          PasswordTextFieldRow(
-            label: 'USERNAME',
-            hint: 'johndoe@gmail.com',
-            controller: _usernameController,
-            icon: Icon(Icons.person_outline_sharp, color: AppColors.accentColor),
-          ),
-          Row(
-            children: [
-              SizedBox(width: 90,),
-              SizedBox(
-                width: screenWidth * 0.65,
-                child: Text('This account will receive an OTP code on their phone number.',
-                style: TextStyle(
-                  color: AppColors.accentColor.withOpacity(0.5),
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold
-                ),),
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          
-          SizedBox(
-            width: 130,
-            height: 40,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => forgot_page_2()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 200),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PasswordTextFieldRow(
+                  height: 44,
+                  width: 260,
+                  label: 'USERNAME',
+                  hint: 'johndoe@gmail.com',
+                  controller: _usernameController,
+                  icon: Icon(
+                    Icons.person_outline_sharp,
+                    color: AppColors.accentColor,
+                  ),
                 ),
-              ),
-              child: const Text(
-                'Send OTP',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
+                Padding(
+                  padding: const EdgeInsets.only(left: 55),
+                  child: SizedBox(
+                    width: 272,
+                    child: Text(
+                      'This account will receive an OTP code on their phone number.',
+                      style: TextStyle(
+                        color: AppColors.accentColor.withOpacity(0.5),
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(height: 20),
+
+                SizedBox(
+                  width: 130,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => forgot_page_2(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: const Text(
+                      'Send OTP',
+                      style: TextStyle(color: Colors.white, fontSize: 13),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

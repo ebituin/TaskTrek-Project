@@ -19,7 +19,7 @@ class _logInState extends State<logIn> {
   final _passwordController = TextEditingController();
 
   @override
-  void dispose() {
+  void disposeController() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -55,7 +55,7 @@ class _logInState extends State<logIn> {
           incorrect = false;
           connection = true;
         });
-        Navigator.pushNamed(context, '/DashBoard');
+        Navigator.pushReplacementNamed(context, '/DashBoard');
       } else {
         setState(() {
           incorrect = true;
@@ -83,9 +83,10 @@ class _logInState extends State<logIn> {
   @override
   @override
   Widget build(BuildContext context) {
-    SizeConfig.init(context); // Initialize screen size data
+    SizeConfig.init(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.primaryColor,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -111,13 +112,9 @@ class _logInState extends State<logIn> {
 
                   // Login Box
                   Container(
-                    constraints: BoxConstraints(
-                      maxHeight: 342,
-                      maxWidth: 333,
-                      minHeight: 342,
-                      minWidth: 333,
-                    ),
-                    padding: EdgeInsets.all(SizeConfig.scaleWidth(20)),
+                    height: 342,
+                    width: 333,
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: AppColors.loginBackground,
                       borderRadius: BorderRadius.circular(8),
@@ -130,8 +127,8 @@ class _logInState extends State<logIn> {
                         Text('Email', style: TextStyle(fontSize: 16)),
                         SizedBox(height: 10),
                         SizedBox(
-                          height: SizeConfig.scaleHeight(40),
-                          width: SizeConfig.scaleWidth(285),
+                          height: 40,
+                          width: 285,
                           child: TextField(
                             controller: _emailController,
                             cursorColor: Colors.black,
@@ -143,14 +140,11 @@ class _logInState extends State<logIn> {
                         SizedBox(height: 20),
 
                         // Password
-                        Text(
-                          'Password',
-                          style: TextStyle(fontSize: SizeConfig.scaleWidth(14)),
-                        ),
+                        Text('Password', style: TextStyle(fontSize: 14)),
                         SizedBox(height: 10),
                         SizedBox(
-                          height: SizeConfig.scaleHeight(40),
-                          width: SizeConfig.scaleWidth(285),
+                          height: 40,
+                          width: 285,
                           child: TextField(
                             controller: _passwordController,
                             obscureText: obscureTextState,
@@ -175,7 +169,7 @@ class _logInState extends State<logIn> {
                         // Sign In Button
                         SizedBox(
                           width: double.infinity,
-                          height: SizeConfig.scaleHeight(40),
+                          height: 40,
                           child: ElevatedButton(
                             onPressed: validationState,
                             style: ElevatedButton.styleFrom(
@@ -197,7 +191,11 @@ class _logInState extends State<logIn> {
                         SizedBox(height: 20),
 
                         GestureDetector(
-                          onTap: () => Navigator.pushNamed(context, '/Forgot'),
+                          onTap:
+                              () => Navigator.pushReplacementNamed(
+                                context,
+                                '/Forgot',
+                              ),
                           child: Text(
                             'Forgot password?',
                             style: TextStyle(
@@ -214,23 +212,22 @@ class _logInState extends State<logIn> {
                   SizedBox(height: 20),
 
                   SizedBox(
-                    height: SizeConfig.scaleHeight(100),
+                    height: 100,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         (!connection || incorrect)
                             ? _buildErrorBox()
-                            : SizedBox(height: SizeConfig.scaleHeight(100)),
+                            : SizedBox(height: 100),
                       ],
                     ),
                   ),
-
-                  // Sign up prompt
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Don\'t have an account?',
-                        style: TextStyle(fontSize: SizeConfig.scaleWidth(13)),
+                        style: TextStyle(fontSize: 13),
                       ),
                       SizedBox(width: 5),
                       GestureDetector(
@@ -239,7 +236,7 @@ class _logInState extends State<logIn> {
                         child: Text(
                           'Create a new account.',
                           style: TextStyle(
-                            fontSize: SizeConfig.scaleWidth(13),
+                            fontSize: 13,
                             color: Color(0xFF3336AB),
                             fontWeight: FontWeight.bold,
                           ),
@@ -299,17 +296,14 @@ class _logInState extends State<logIn> {
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: SizeConfig.scaleHeight(16),
+                    fontSize: 16,
                   ),
                 ),
                 Text(
                   incorrect
                       ? 'Username or Password is incorrect.'
                       : 'Please check your internet connection.',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: SizeConfig.scaleHeight(13),
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 13),
                 ),
               ],
             ),

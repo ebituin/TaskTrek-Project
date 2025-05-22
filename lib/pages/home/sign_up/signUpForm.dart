@@ -14,6 +14,7 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   bool isInformationForm = true;
+  final bool clear = false;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -27,6 +28,12 @@ class _SignupFormState extends State<SignupForm> {
 
   Future<void> insertNewUser() async {
     try {
+      print(_emailController.text);
+      print(_passwordController.text);
+      print(_firstNameController.text);
+      print(_lastNameController.text);
+      print(_contactNumberController.text);
+      print(_addressController.text);
       if (_emailController.text.isEmpty ||
           _passwordController.text.isEmpty ||
           _firstNameController.text.isEmpty ||
@@ -61,6 +68,7 @@ class _SignupFormState extends State<SignupForm> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
     return WillPopScope(
       onWillPop: () async {
         if (!isInformationForm) {
@@ -163,6 +171,11 @@ class _SignupFormState extends State<SignupForm> {
               child:
                   isInformationForm
                       ? InformationForm(
+                        buttonPressed: () {
+                          setState(() {
+                            isInformationForm = false;
+                          });
+                        },
                         firstNameController: _firstNameController,
                         lastNameController: _lastNameController,
                         contactNumberController: _contactNumberController,
@@ -170,6 +183,7 @@ class _SignupFormState extends State<SignupForm> {
                         birthDateController: _birthDateController,
                       )
                       : CredentialsForm(
+                        insertUser: insertNewUser,
                         emailController: _emailController,
                         passwordController: _passwordController,
                         confirmPasswordController: _confirmPasswordController,
@@ -178,56 +192,15 @@ class _SignupFormState extends State<SignupForm> {
 
             // Button to move to the next form
             Padding(
-              padding: const EdgeInsets.all(35.0),
+              padding: const EdgeInsets.only(bottom: 20),
               child: Column(
                 children: [
-                  Container(
-                    width: screenWidth * 0.65,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (isInformationForm) {
-                                setState(() {
-                                  isInformationForm =
-                                      false; // Move to Credentials form
-                                });
-                              } else {
-                                insertNewUser();
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                side: BorderSide(
-                                  color: AppColors.accentColor,
-                                  width: 1,
-                                ),
-                              ),
-                            ),
-                            child: Text(
-                              isInformationForm ? 'Next' : 'Submit',
-                              style: TextStyle(
-                                color: AppColors.accentColor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: SizeConfig.scaleHeight(20)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: screenHeight * 0.015,
-                        width: screenHeight * 0.08,
+                        height: 10,
+                        width: 70,
                         decoration: BoxDecoration(
                           color:
                               isInformationForm
@@ -238,8 +211,8 @@ class _SignupFormState extends State<SignupForm> {
                       ),
                       SizedBox(width: 10),
                       Container(
-                        height: screenHeight * 0.015,
-                        width: screenHeight * 0.08,
+                        height: 10,
+                        width: 70,
                         decoration: BoxDecoration(
                           color:
                               !isInformationForm

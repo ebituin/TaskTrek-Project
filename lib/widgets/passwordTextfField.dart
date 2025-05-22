@@ -56,6 +56,7 @@ class _PasswordFieldRowState extends State<PasswordFieldRow> {
                   controller: widget.controller,
                   obscureText: _obscure,
                   cursorColor: AppColors.accentColor,
+
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                       icon: Icon(

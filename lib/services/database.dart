@@ -23,6 +23,7 @@ Future<void> logOutUser() async {
   final supabase = Supabase.instance.client;
   try {
     await supabase.auth.signOut();
+    UserCache.clearCache();
   } catch (e) {
     print('Error during log out: $e');
   }
