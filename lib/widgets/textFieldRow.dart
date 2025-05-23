@@ -3,20 +3,20 @@ import 'package:tasktrek/styles/styles.dart';
 import 'package:tasktrek/widgets/mediaSize.dart';
 
 class PasswordTextFieldRow extends StatefulWidget {
-  final String label;
+  final String? label;
   final String hint;
   final TextEditingController controller;
-  final Icon icon;
+  final Icon? icon;
   bool isPasswordVisible;
   final bool isPassword;
   double width;
   double height;
   final bool filled;
   PasswordTextFieldRow({
-    required this.label,
+    this.label,
     required this.hint,
     required this.controller,
-    required this.icon,
+    this.icon,
     this.isPasswordVisible = false,
     this.isPassword = false,
     this.height = 0,
@@ -56,8 +56,9 @@ class _PasswordTextFieldRowState extends State<PasswordTextFieldRow> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.icon ?? SizedBox(),
-                SizedBox(width: 10),
+                if (widget.icon != null)
+                  Row(children: [widget.icon!, SizedBox(width: 10)]),
+
                 SizedBox(
                   height: widget.height != 0 ? widget.height : 38,
                   width: widget.width != 0 ? widget.width : 258,

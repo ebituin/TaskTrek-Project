@@ -35,6 +35,12 @@ class _ForgotPageState extends State<ForgotPage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFF6C96B5),
       appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/logIn');
+          },
+          child: Icon(Icons.arrow_back, color: Colors.black),
+        ),
         backgroundColor: const Color(0xFF6C96B5),
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
